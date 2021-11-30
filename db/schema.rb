@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_30_214525) do
+ActiveRecord::Schema.define(version: 2021_11_30_215828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,5 +33,25 @@ ActiveRecord::Schema.define(version: 2021_11_30_214525) do
     t.index ["director_id"], name: "index_films_on_director_id"
   end
 
+  create_table "galleries", force: :cascade do |t|
+    t.string "name"
+    t.boolean "non_profit"
+    t.float "entry_cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pieces", force: :cascade do |t|
+    t.bigint "gallery_id"
+    t.string "name"
+    t.string "artist"
+    t.integer "year"
+    t.boolean "original"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["gallery_id"], name: "index_pieces_on_gallery_id"
+  end
+
   add_foreign_key "films", "directors"
+  add_foreign_key "pieces", "galleries"
 end
