@@ -1,3 +1,3 @@
 class Piece < ApplicationRecord
-  belongs_to :gallerie
+  belongs_to :gallery
 end

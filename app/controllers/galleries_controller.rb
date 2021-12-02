@@ -2,7 +2,7 @@ class GalleriesController < ApplicationController
 
   def index
     # @directors = Director.all
-    @galleries = Gallerie.all
+    @galleries = Gallery.all
   end
 
 end
