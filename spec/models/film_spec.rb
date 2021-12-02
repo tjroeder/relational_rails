@@ -11,4 +11,8 @@ RSpec.describe Film, type: :model do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:rt_rank) }
   end
+
+  describe 'relationships' do
+    it { should belong_to :director}
+  end
 end
