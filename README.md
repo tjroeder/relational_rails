@@ -1,5 +1,7 @@
 # Relational Rails Project
 
+[![Ruby](https://github.com/tjroeder/relational_rails/actions/workflows/tests.yml/badge.svg)](https://github.com/tjroeder/relational_rails/actions/workflows/tests.yml)
+
 ## Ruby version
 2.7.2
 
