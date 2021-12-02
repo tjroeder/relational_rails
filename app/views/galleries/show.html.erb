@@ -1,0 +1,11 @@
+<h1><%= @gallery.name %></h1>
+
+<p>NPO Status:
+<% if @gallery.non_profit == true %>
+    "Non-Profit"
+<% else %>
+    "Private"
+<% end %>
+</p>
+
+<p>Cost of Entry: $<%= @gallery.entry_cost %> </p>
