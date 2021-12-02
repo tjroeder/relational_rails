@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Director, type: :model do
-  let!(:wes) { Director.create!(name: 'Wes Anderson', imdb_rank: 20, tv_credit: false) }
+  let!(:director_1) { Director.create!(name: 'Wes Anderson', imdb_rank: 20, tv_credit: false) }
 
   describe 'validations' do
     it { should validate_presence_of(:name) }
