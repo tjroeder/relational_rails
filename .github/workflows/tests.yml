@@ -5,7 +5,7 @@ name: Ruby
 
 on:
   push:
-    branches: 
+    branches:
       - main
       - development
   pull_request:
@@ -18,6 +18,16 @@ jobs:
       matrix:
         ruby-version: ['2.7.2']
 
+    services:
+      postgres:
+        image: postgres:14
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
     - uses: actions/checkout@v2
     - name: Set up Ruby
@@ -27,6 +37,18 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: install dependencies
       run: bundle install
-    - name: Run tests
-      #run: bundle exec rake
-      run: bundle exec rspec
+    - name: Setup Database
+      run: |
+        cp config/database.yml.github-actions config/database.yml
+        bundle exec rake db:create
+        bundle exec rake db:schema:load
+      env:
+        RAILS_ENV: test
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+    - name: Run RSpec
+        run: COVERAGE=true bundle exec rspec  --require rails_helper
+        env:
+          RAILS_ENV: test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
