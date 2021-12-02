@@ -8,4 +8,8 @@ RSpec.describe Director, type: :model do
     it { should validate_presence_of(:imdb_rank) }
     # it { should validate_presence_of(:tv_credit) }
   end
+
+  describe 'relationships' do
+    it { should have_many :films }
+  end
 end
