@@ -1,12 +1,12 @@
-# README
+# Relational Rails Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Ruby version
+2.7.2
 
-Things you may want to cover:
+## Database Schema
+![image](https://user-images.githubusercontent.com/78194232/144355664-0c073ec2-161e-4dde-8569-1324766d7bc3.png)
 
-* Ruby version
-
+<!--
 * System dependencies
 
 * Configuration
@@ -20,5 +20,4 @@ Things you may want to cover:
 * Services (job queues, cache servers, search engines, etc.)
 
 * Deployment instructions
-
-* ...
+-->
