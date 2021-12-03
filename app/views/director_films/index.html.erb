@@ -1,0 +1,8 @@
+<h1><%= @director.name %></h1>
+<% @films.each do |film| %>
+  <h3><%= film.name %></h3>
+  <ul>
+    <li><%= film.rt_rank %></li>
+    <li><%= film.nominated %></li>
+  </ul>
+<% end %>

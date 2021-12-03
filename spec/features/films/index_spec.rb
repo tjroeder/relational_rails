@@ -11,6 +11,12 @@ RSpec.describe '/films/index.html.erb', type: :feature do
   
   describe 'as a user' do
     describe 'when I visit the films index' do
+      it 'should visit the page at /films/' do
+        visit '/films'
+
+        expect(page).to have_current_path('/films')
+      end
+
       it 'displays all the films names' do
         visit '/films'
 
