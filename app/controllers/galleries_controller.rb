@@ -1,8 +1,7 @@
 class GalleriesController < ApplicationController
 
   def index
-    # @directors = Director.all
-    @galleries = Gallery.all
+    @galleries = Gallery.order(created_at: :desc)
   end
 
   def show
