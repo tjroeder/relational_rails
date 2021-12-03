@@ -45,6 +45,22 @@ RSpec.describe '/director/index.html.erb', type: :feature do
         expect(page).to have_content(expected)
         expect(page).to have_no_content(not_expected)
       end
+
+      it 'displays a link called Films Index' do
+        visit '/directors'
+
+        expect(page).to have_link("Films Index", :href=>"/films")
+      end
     end
+
+    describe 'can click links' do
+      it 'redirect the user to the films index' do
+        visit '/directors'
+        click_link 'Films Index'
+        
+        expect(page).to have_current_path("/films")
+      end
+    end
+
   end
 end
