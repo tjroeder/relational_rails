@@ -10,7 +10,7 @@ RSpec.describe GalleriesController, type: :feature do
       click_link "Art 4 Us"
     end
 
-    it 'should visit the page at parents/:id' do
+    it 'should visit the page at galleries/:id' do
       expect(page).to have_current_path("/galleries/#{@gallery_1.id}")
     end
 
