@@ -1,0 +1,15 @@
+<h1>Art Pieces</h1>
+
+<% @pieces.each do |piece| %>
+  <h3> <a href="/pieces/<%= piece.id %>"> <%= piece.name %> </a></h3>
+  <p> Artist: <%= piece.artist %> </p>
+  <p> Year Created: <%= piece.year %> </p>
+  <p> Original?:
+    <% if piece.original == true %>
+      Original
+    <% else %>
+      Reprint
+    <% end %>
+  </p>
+
+<% end %>
