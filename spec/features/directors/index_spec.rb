@@ -6,6 +6,12 @@ RSpec.describe '/director/index.html.erb', type: :feature do
 
   describe 'as a user' do
     describe 'when I visit the directors index' do
+      it 'should visit the page at /directors' do
+        visit '/directors'
+
+        expect(page).to have_current_path("/directors")
+      end
+
       it 'displays all the directors names' do
         visit '/directors'
 
