@@ -30,7 +30,7 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
       
       it 'does not show other films attributes' do
         visit "/directors/#{director_1.id}/films"
-        save_and_open_page
+        
         expect(page).to have_no_content(film_3.name)
         expect(page).to have_no_content(film_3.rt_rank)
         expect(page).to have_no_content(film_3.nominated)
