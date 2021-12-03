@@ -7,7 +7,7 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
 
   let!(:film_1) { director_1.films.create!(name: 'Bottle Rocket', rt_rank: 85, nominated: false) }
   let!(:film_2) { director_1.films.create!(name: 'Life Aquatic', rt_rank: 56, nominated: false) }
-  let!(:film_3) { director_3.films.create!(name: 'Star Wars: A New Hope', rt_rank: 92, nominated: true)}
+  let!(:film_3) { director_3.films.create!(name: 'Star Wars: A New Hope', rt_rank: 92, nominated: true) }
 
   describe 'as a user' do
     describe 'when I visit directors films index' do
@@ -17,7 +17,7 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
         expect(page).to have_current_path("/directors/#{director_1.id}/films")
       end
 
-      it 'shows directors films attributes' do
+      it 'displays directors films attributes' do
         visit "/directors/#{director_1.id}/films"
         
         expect(page).to have_content(film_1.name)
@@ -28,12 +28,39 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
         expect(page).to have_content(film_2.nominated)
       end
       
-      it 'does not show other films attributes' do
+      it 'does not display other films attributes' do
         visit "/directors/#{director_1.id}/films"
         
         expect(page).to have_no_content(film_3.name)
         expect(page).to have_no_content(film_3.rt_rank)
         expect(page).to have_no_content(film_3.nominated)
+      end
+
+      it 'displays a link called Films Index' do
+        visit "/directors/#{director_1.id}/films"
+        expect(page).to have_link("Films Index", :href=>"/films")
+
+        visit "/directors/#{director_2.id}/films"
+        expect(page).to have_link("Films Index", :href=>"/films")
+        
+        visit "/directors/#{director_3.id}/films"
+        expect(page).to have_link("Films Index", :href=>"/films")
+      end
+    end
+
+    describe 'can click links' do
+      it 'redirect the user to the films index' do
+        visit "/directors/#{director_1.id}/films"
+        click_link 'Films Index'
+        expect(page).to have_current_path("/films")
+
+        visit "/directors/#{director_2.id}/films"
+        click_link 'Films Index'
+        expect(page).to have_current_path("/films")
+        
+        visit "/directors/#{director_3.id}/films"
+        click_link 'Films Index'
+        expect(page).to have_current_path("/films")
       end
     end
   end
