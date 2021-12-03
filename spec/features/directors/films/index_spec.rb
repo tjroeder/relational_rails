@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe '/films/show.html.erb', type: :feature do
+RSpec.describe '/director_films/index.html.erb', type: :feature do
   let!(:director_1) { Director.create!(name: 'Wes Anderson', imdb_rank: 20, tv_credit: false) }
   let!(:director_2) { Director.create!(name: 'Steven Spielberg', imdb_rank: 1, tv_credit: true) }
   let!(:director_3) { Director.create!(name: 'George Lucas', imdb_rank: 25, tv_credit: true) }
@@ -10,20 +10,27 @@ RSpec.describe '/films/show.html.erb', type: :feature do
   let!(:film_3) { director_3.films.create!(name: 'Star Wars: A New Hope', rt_rank: 92, nominated: true)}
 
   describe 'as a user' do
-    describe 'when I visit a films page' do
-      it 'should visit the page at films/:id' do
-        visit "/films/#{film_1.id}"
+    describe 'when I visit directors films index' do
+      it 'should visit the page at directors/:director_id/films' do
+        visit "directors/#{director_1.id}/films"
 
-        expect(page).to have_current_path("/films/#{film_1.id}")
+        expect(page).to have_current_path("/directors/#{director_1.id}/films")
       end
 
-      it 'displays the films attributes' do
-        visit "/films/#{film_1.id}"
-
+      it 'shows directors films attributes' do
+        visit "/directors/#{director_1.id}/films"
+        
         expect(page).to have_content(film_1.name)
+        expect(page).to have_content(film_2.name)
         expect(page).to have_content(film_1.rt_rank)
+        expect(page).to have_content(film_2.rt_rank)
         expect(page).to have_content(film_1.nominated)
-
+        expect(page).to have_content(film_2.nominated)
+      end
+      
+      it 'does not show other films attributes' do
+        visit "/directors/#{director_1.id}/films"
+        save_and_open_page
         expect(page).to have_no_content(film_3.name)
         expect(page).to have_no_content(film_3.rt_rank)
         expect(page).to have_no_content(film_3.nominated)
