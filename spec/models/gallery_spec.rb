@@ -10,7 +10,6 @@ RSpec.describe Gallery, type: :model do
   describe 'validations' do
     it {should validate_presence_of(:name)}
     it {should validate_presence_of(:entry_cost)}
-    it {should validate_presence_of(:non_profit)}
   end
 
   describe 'instance methods' do
