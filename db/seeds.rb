@@ -16,7 +16,12 @@ film_3 = director_3.films.create!(name: 'Star Wars: A New Hope', rt_rank: 92, no
 
 gallery_1 = Gallery.create!(name: "Art 4 Us", non_profit: true, entry_cost: 4.75)
 gallery_2 = Gallery.create!(name: "Benji's Gallery", non_profit: false, entry_cost: 10)
+gallery_3 = Gallery.create!(name: "Zippy Dee Doo Dah", non_profit: false, entry_cost: 5.75)
 
-piece_1 = gallery_1.piece.create!(name: "Starry Night", artist: "Vincent Van Gogh", year: 1889, original: false)
-piece_2 = gallery_1.piece.create!(name: "Self Portrait", artist: "Vincent Van Gogh", year: 1889, original: true)
-piece_3 = gallery_2.piece.create!(name: "Girl with the Pearl Earring", artist: "Johannes Vermeer", year: 1665, original: false)
+
+piece_1 = gallery_1.pieces.create!(name: "Starry Night", artist: "Vincent Van Gogh", year: 1889, original: false)
+piece_2 = gallery_1.pieces.create!(name: "Self Portrait", artist: "Vincent Van Gogh", year: 1889, original: true)
+piece_3 = gallery_2.pieces.create!(name: "Girl with the Pearl Earring", artist: "Johannes Vermeer", year: 1665, original: false)
+piece_3 = gallery_3.pieces.create!(name: "Water lilies", artist: "Claude Monet", year: 1920, original: false)
+piece_3 = gallery_3.pieces.create!(name: "Irises in Monet's Garden", artist: "Claude Monet", year: 1920, original: false)
+piece_3 = gallery_3.pieces.create!(name: "Impression Sunruse", artist: "Claude Monet", year: 1920, original: false)
