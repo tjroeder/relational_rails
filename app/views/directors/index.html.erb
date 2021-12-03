@@ -1,5 +1,5 @@
 <a href="/films">Films Index</a>
 <h1>Directors Index</h1>
-<% @directors.each do |director| %>
+<% @directors.desc_order_by_created.each do |director| %>
   <p><%= director.name %> - Created at: <%= director.created_at %></p>
 <% end %>
