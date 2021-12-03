@@ -9,3 +9,7 @@
 director_1 = Director.create!(name: 'Wes Anderson', imdb_rank: 20, tv_credit: false) 
 director_2 = Director.create!(name: 'Steven Spielberg', imdb_rank: 1, tv_credit: true)
 director_3 = Director.create!(name: 'George Lucas', imdb_rank: 25, tv_credit: true)
+
+film_1 = director_1.films.create!(name: 'Bottle Rocket', rt_rank: 85, nominated: false)
+film_2 = director_1.films.create!(name: 'Life Aquatic', rt_rank: 56, nominated: false)
+film_3 = director_3.films.create!(name: 'Star Wars: A New Hope', rt_rank: 92, nominated: true)
