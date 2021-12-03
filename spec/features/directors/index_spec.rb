@@ -36,14 +36,9 @@ RSpec.describe '/director/index.html.erb', type: :feature do
         director_4 = Director.create!(name: 'Sophia Coppola', imdb_rank: 13, tv_credit: true)
         visit '/directors'
 
-        expected = 
-        "#{director_4.name} - Created at: #{director_4.created_at}\n#{director_3.name} - Created at: #{director_3.created_at}\n#{director_2.name} - Created at: #{director_2.created_at}\n#{director_1.name} - Created at: #{director_1.created_at}"
-
-        not_expected = 
-        "#{director_1.name} - Created at: #{director_1.created_at}\n#{director_2.name} - Created at: #{director_2.created_at}\n#{director_3.name} - Created at: #{director_3.created_at}\n#{director_4.name} - Created at: #{director_4.created_at}"
-
-        expect(page).to have_content(expected)
-        expect(page).to have_no_content(not_expected)
+        expect(director_4.name).to appear_before(director_3.name)
+        expect(director_3.name).to appear_before(director_2.name)
+        expect(director_2.name).to appear_before(director_1.name)
       end
 
       it 'displays a link called Films Index' do
