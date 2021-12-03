@@ -1,4 +1,4 @@
 <h1>Directors Index</h1>
 <% @directors.each do |director| %>
-  <p><%= director.name %></p>
+  <p><%= director.name %> - Created at: <%= director.created_at %></p>
 <% end %>
