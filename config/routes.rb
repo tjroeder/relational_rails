@@ -8,5 +8,7 @@ Rails.application.routes.draw do
 
   get '/galleries', to: 'galleries#index'
   get 'galleries/:id', to: 'galleries#show'
+
   get '/pieces', to: 'pieces#index'
+  get '/pieces/:id', to: 'pieces#show'
 end

@@ -1,0 +1,11 @@
+<h1> <%= @piece.name %> </h1>
+
+<p>Artist: <%= @piece.artist %> </p>
+<p>Year Created: <%= @piece.year %> </p>
+<p>Original?:
+  <% if @piece.original == true %>
+    Original
+  <% else %>
+    Reprint
+  <% end %>
+</p>
