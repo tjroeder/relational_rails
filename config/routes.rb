@@ -3,12 +3,13 @@ Rails.application.routes.draw do
   get '/directors', to: 'directors#index'
   get '/directors/:id', to: 'directors#show'
   get '/directors/:director_id/films', to: 'director_films#index'
-  
+
   get '/films', to: 'films#index'
   get '/films/:id', to: 'films#show'
 
   get '/galleries', to: 'galleries#index'
-  get 'galleries/:id', to: 'galleries#show'
+  get '/galleries/:id', to: 'galleries#show'
+  get '/galleries/:gallery_id/pieces', to: 'gallery_pieces#index'
 
   get '/pieces', to: 'pieces#index'
   get '/pieces/:id', to: 'pieces#show'
