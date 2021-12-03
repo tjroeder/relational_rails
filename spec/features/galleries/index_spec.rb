@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe GalleriesController, feature: :type do
+RSpec.describe GalleriesController, type: :feature do
   describe 'instance methods' do
     it 'displays name of each parent record in the system' do
       gallery_1 = Gallery.create(name: "Art 4 Us", non_profit: true, entry_cost: 4.75)
