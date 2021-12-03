@@ -14,14 +14,14 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
       it 'should visit the page at directors/:director_id/films' do
         visit "directors/#{director_1.id}/films"
 
-        expect(page).to have_current_path("/directors/#{director_1.id}")
+        expect(page).to have_current_path("/directors/#{director_1.id}/films")
       end
 
       it 'shows directors films attributes' do
         visit "/directors/#{director_1.id}/films"
         
-        expect(page).to have_content(film_1.title)
-        expect(page).to have_content(film_2.title)
+        expect(page).to have_content(film_1.name)
+        expect(page).to have_content(film_2.name)
         expect(page).to have_content(film_1.rt_rank)
         expect(page).to have_content(film_2.rt_rank)
         expect(page).to have_content(film_1.nominated)
@@ -30,9 +30,10 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
       
       it 'does not show other films attributes' do
         visit "/directors/#{director_1.id}/films"
-        
-        expect(page).to have_no_content(film_3.title)
+        save_and_open_page
+        expect(page).to have_no_content(film_3.name)
         expect(page).to have_no_content(film_3.rt_rank)
+        expect(page).to have_no_content(film_3.nominated)
       end
     end
   end
