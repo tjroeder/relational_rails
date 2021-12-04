@@ -20,7 +20,7 @@ RSpec.describe GalleriesController, type: :feature do
 
     it 'displays gallery attributes on page' do
       expect(page).to have_content(@gallery_1.name)
-      expect(page).to have_content('NPO Status: "Non-Profit"')
+      expect(page).to have_content('NPO Status: Non-Profit')
       expect(page).to have_content("Cost of Entry: $#{@gallery_1.entry_cost}")
     end
 
