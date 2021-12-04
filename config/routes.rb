@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   get '/films/:id', to: 'films#show'
 
   get '/galleries', to: 'galleries#index'
+  get '/galleries/new', to: 'galleries#new'
   get '/galleries/:id', to: 'galleries#show'
+  post '/galleries', to: 'galleries#create'
+
   get '/galleries/:gallery_id/pieces', to: 'gallery_pieces#index'
 
   get '/pieces', to: 'pieces#index'

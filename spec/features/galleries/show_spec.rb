@@ -61,5 +61,21 @@ RSpec.describe GalleriesController, type: :feature do
         expect(page).to have_content(@piece_2.name)
       end
     end
+
+    describe 'add new gallery link' do
+      before :each do
+        visit "/galleries"
+      end
+
+      it 'has link to new gallery page' do
+        expect(page).to have_link("Add New Gallery", :href=>"/galleries/new")
+      end
+
+      it 'takes you to new gallery form when you click it' do
+        click_link 'Add New Gallery'
+        expect(page).to have_current_path('/galleries/new')
+        expect(page).to have_content('Enter Gallery Information')
+      end
+    end
   end
 end
