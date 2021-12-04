@@ -80,4 +80,24 @@ RSpec.describe PiecesController, type: :feature do
       expect(page).to have_current_path('/galleries')
     end
   end
+
+  describe 'update gallery info link' do
+    before :each do
+      click_link "#{@piece_1.name}"
+    end
+
+    it 'is at a pieces show page' do
+      expect(page).to have_current_path("/pieces/#{@piece_1.id}")
+    end
+
+    it 'has link to update art piece info page' do
+      expect(page).to have_link("Update Art Piece Information", :href=>"/pieces/#{@piece_1.id}/edit")
+    end
+
+    it 'takes you to edit gallery info form when you click it' do
+      click_link 'Update Art Piece Information'
+      expect(page).to have_current_path("/pieces/#{@piece_1.id}/edit")
+      expect(page).to have_content("Update #{@piece_1.name}")
+    end
+  end
 end
