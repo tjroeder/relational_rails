@@ -20,4 +20,6 @@ Rails.application.routes.draw do
 
   get '/pieces', to: 'pieces#index'
   get '/pieces/:id', to: 'pieces#show'
+  get '/pieces/:id/edit', to: 'pieces#edit'
+  patch '/pieces/:id', to: 'pieces#update'
 end
