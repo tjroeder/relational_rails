@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get '/galleries', to: 'galleries#index'
   get '/galleries/new', to: 'galleries#new'
   get '/galleries/:id', to: 'galleries#show'
+  get '/galleries/:id/edit', to:'galleries#edit'
   post '/galleries', to: 'galleries#create'
+  patch '/galleries/:id', to: 'galleries#update'
 
   get '/galleries/:gallery_id/pieces', to: 'gallery_pieces#index'
 

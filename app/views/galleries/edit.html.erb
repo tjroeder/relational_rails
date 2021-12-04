@@ -1,0 +1,18 @@
+<form action="/galleries/<%= @gallery.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
+
+  <p>Update Gallery Information</p>
+  <label for="gname">Gallery Name:</label>
+  <input type='text' name='gallery[name]' value="<%= @gallery.name %>"><br><br>
+
+  <label for="gentrycost">Entry Cost (in USD):</label>
+  <input type='text' name='gallery[entry_cost]' value="<%= @gallery.entry_cost %>"><br><br>
+
+  <p>NPO Status:</p>
+  <input type='radio' name='gallery[non_profit]' value="true" checked required>
+  <label for='npoyes'>NPO</label><br><br>
+  <input type='radio' name='gallery[non_profit]' value="false" required>
+  <label for='npono'>Other</label><br><br>
+  <input type='submit' value='Submit'>
+</form>
