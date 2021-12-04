@@ -11,7 +11,7 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
 
   describe 'as a user' do
     describe 'when I visit the director id' do
-      it 'should visit the page at /director/:id' do
+      it 'should visit the page at /directors/:id' do
         visit "/directors/#{director_1.id}"
 
         expect(page).to have_current_path("/directors/#{director_1.id}")
