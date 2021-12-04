@@ -12,7 +12,7 @@ RSpec.describe GalleriesController, type: :feature do
     visit "galleries/"
     click_link "Art 4 Us"
   end
-  
+
   describe 'Galleries show page' do
     it 'should visit the page at galleries/:id' do
       expect(page).to have_current_path("/galleries/#{@gallery_1.id}")
@@ -45,6 +45,21 @@ RSpec.describe GalleriesController, type: :feature do
       click_link "Galleries"
 
       expect(page).to have_current_path('/galleries')
+    end
+
+    describe 'element specific to galleries#show page' do
+      it 'has a nav element with links' do
+        expect(page).to have_link("Current Exhibition", :href=>"/galleries/#{@gallery_1.id}/pieces")
+      end
+
+      it 'has link to art pieces index' do
+        click_link "Current Exhibition"
+
+        expect(page).to have_current_path("/galleries/#{@gallery_1.id}/pieces")
+
+        expect(page).to have_content(@piece_1.name)
+        expect(page).to have_content(@piece_2.name)
+      end
     end
   end
 end
