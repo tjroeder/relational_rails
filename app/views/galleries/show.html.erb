@@ -9,9 +9,9 @@
 <ul>
 <li>NPO Status:
 <% if @gallery.non_profit == true %>
-    "Non-Profit"
+    Non-Profit
 <% else %>
-    "Private"
+    Private
 <% end %>
 </li>
 
@@ -19,3 +19,5 @@
 
 <li>Number of Pieces: <%= @gallery.total_pieces %> </li>
 </ul>
+
+<h2><a href="/galleries/<%= @gallery.id %>/edit">Edit Gallery Info</a></h2>
