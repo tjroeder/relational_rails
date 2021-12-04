@@ -1,0 +1,21 @@
+<nav>
+  <a href="/pieces">Art Pieces</a>
+  <a href="/galleries">Galleries</a>
+  <a href="/galleries/<%= @gallery.id %>/pieces">Current Exhibition</a>
+</nav>
+
+<h1><%= @gallery.name %></h1>
+
+<ul>
+<li>NPO Status:
+<% if @gallery.non_profit == true %>
+    "Non-Profit"
+<% else %>
+    "Private"
+<% end %>
+</li>
+
+<li>Cost of Entry: $<%= @gallery.entry_cost %> </li>
+
+<li>Number of Pieces: <%= @gallery.total_pieces %> </li>
+</ul>

@@ -1,0 +1,12 @@
+<nav>
+  <a href="/films">Films Index</a>
+  <a href="/directors">Directors Index</a>
+  <a href="/directors/<%= @director.id %>/films"><%= @director.name %>'s Films Index</a>
+</nav>
+
+<h1><%= @director.name %>'s Films Index</h1>
+<ul>
+  <li>Total Number of Films: <%= @director.total_films %></li>
+  <li>IMDB Ranking: <%= @director.imdb_rank %></li>
+  <li>TV Credit: <%= @director.tv_credit %></li>
+</ul>

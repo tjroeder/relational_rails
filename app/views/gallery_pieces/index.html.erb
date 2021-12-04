@@ -1,0 +1,22 @@
+<nav>
+  <a href="/pieces">Art Pieces</a>
+  <a href="/galleries">Galleries</a>
+</nav>
+
+<h1><%= @gallery.name %></h1>
+<% @pieces.each do |piece| %>
+  <h3><%= piece.name %></h3>
+
+  <ul>
+    <li>Artist: <%= piece.artist %> </li>
+    <li>Year Created: <%= piece.year %> </li>
+    <li>Original?:
+      <% if piece.original == true %>
+        Original
+      <% else %>
+        Reprint
+      <% end %>
+    </li>
+  </ul>
+
+<% end %>
