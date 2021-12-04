@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   patch '/galleries/:id', to: 'galleries#update'
 
   get '/galleries/:gallery_id/pieces', to: 'gallery_pieces#index'
+  get 'galleries/:gallery_id/pieces/new', to: 'gallery_pieces#new'
+  post '/galleries/:gallery_id/pieces', to: 'gallery_pieces#create'
 
   get '/pieces', to: 'pieces#index'
   get '/pieces/:id', to: 'pieces#show'
