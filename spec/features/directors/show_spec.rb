@@ -14,7 +14,6 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
       it 'should visit the page at /director/:id' do
         visit "/directors/#{director_1.id}"
 
-        save_and_open_page
         expect(page).to have_current_path("/directors/#{director_1.id}")
       end
 
