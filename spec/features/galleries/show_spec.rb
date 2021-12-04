@@ -77,5 +77,22 @@ RSpec.describe GalleriesController, type: :feature do
         expect(page).to have_content('Enter Gallery Information')
       end
     end
+
+    describe 'update gallery info link' do
+      before :each do
+        visit "/galleries"
+        click_link "Art 4 Us"
+      end
+
+      it 'has link to edit gallery info page' do
+        expect(page).to have_link("Edit Gallery Info", :href=>"/galleries/#{@gallery_1.id}/edit")
+      end
+
+      it 'takes you to edit gallery info form when you click it' do
+        click_link 'Edit Gallery Info'
+        expect(page).to have_current_path("/galleries/#{@gallery_1.id}/edit")
+        expect(page).to have_content('Update Gallery Information')
+      end
+    end
   end
 end
