@@ -1,4 +1,8 @@
-<a href="/films">Films Index</a>
+<nav>
+  <a href="/films">Films Index</a>
+  <a href="/directors">Directors Index</a>
+</nav>
+
 <h1>Directors Index</h1>
 <% @directors.desc_order_by_created.each do |director| %>
   <p><%= director.name %> - Created at: <%= director.created_at %></p>
