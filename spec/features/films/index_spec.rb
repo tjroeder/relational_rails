@@ -40,6 +40,34 @@ RSpec.describe '/films/index.html.erb', type: :feature do
         expect(page).to have_content(film_2.nominated)
         expect(page).to have_content(film_3.nominated)
       end
+
+      it 'displays a link called Films Index' do
+        visit '/films'
+
+        expect(page).to have_link("Films Index", :href=>"/films")
+      end
+
+      it 'displays a link called Directors Index' do
+        visit '/films'
+
+        expect(page).to have_link("Directors Index", :href=>"/directors")
+      end
+    end
+
+    describe 'can click links' do
+      it 'redirect the user to the films index' do
+        visit '/films'
+        click_link 'Films Index'
+        
+        expect(page).to have_current_path("/films")
+      end
+
+      it 'redirect the user to the directors index' do
+        visit '/films'
+        click_link 'Directors Index'
+        
+        expect(page).to have_current_path("/directors")
+      end
     end
   end
 end

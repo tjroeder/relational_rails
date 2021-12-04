@@ -46,6 +46,17 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
         visit "/directors/#{director_3.id}/films"
         expect(page).to have_link("Films Index", :href=>"/films")
       end
+
+      it 'displays a link called Directors Index' do
+        visit "/directors/#{director_1.id}/films"
+        expect(page).to have_link("Directors Index", :href=>"/directors")
+
+        visit "/directors/#{director_2.id}/films"
+        expect(page).to have_link("Directors Index", :href=>"/directors")
+        
+        visit "/directors/#{director_3.id}/films"
+        expect(page).to have_link("Directors Index", :href=>"/directors")
+      end
     end
 
     describe 'can click links' do
@@ -61,6 +72,20 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
         visit "/directors/#{director_3.id}/films"
         click_link 'Films Index'
         expect(page).to have_current_path("/films")
+      end
+
+      it 'redirect the user to the directors index' do
+        visit "/directors/#{director_1.id}/films"
+        click_link 'Directors Index'
+        expect(page).to have_current_path("/directors")
+
+        visit "/directors/#{director_2.id}/films"
+        click_link 'Directors Index'
+        expect(page).to have_current_path("/directors")
+        
+        visit "/directors/#{director_3.id}/films"
+        click_link 'Directors Index'
+        expect(page).to have_current_path("/directors")
       end
     end
   end
