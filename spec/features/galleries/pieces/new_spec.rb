@@ -21,7 +21,7 @@ RSpec.describe 'Add Piece to Gallery Form', type: :feature do
     expect(page).to have_field('piece[original]')
   end
 
-  it 'updates galleries index when form is submitted' do
+  it 'updates gallery pieces index when form is submitted' do
     fill_in 'piece[name]', with: 'Moaning Lisa'
     fill_in 'piece[artist]', with: 'Leonard FlaDinci'
     fill_in 'piece[year]', with: '1503'
