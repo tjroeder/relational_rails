@@ -1,3 +1,8 @@
+<nav>
+  <a href="/pieces">Art Pieces</a>
+  <a href="/galleries">Galleries</a>
+</nav>
+
 <form action="/galleries" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
@@ -14,5 +19,5 @@
   <label for='npoyes'>NPO</label><br><br>
   <input type='radio' name='gallery[non_profit]' value="false" required>
   <label for='npono'>Other</label><br><br>
-  <input type='submit'>
+  <input type='submit' value='Submit'>
 </form>
