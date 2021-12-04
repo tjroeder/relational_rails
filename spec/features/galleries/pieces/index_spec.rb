@@ -45,4 +45,17 @@ RSpec.describe 'Gallery pieces index' do
       expect(page).to have_current_path('/galleries')
     end
   end
+
+  describe 'add new pieces link' do
+    it 'has link to add new piece page' do
+      expect(page).to have_link("Add New Piece", :href=>"/galleries/#{@gallery_1.id}/pieces/new")
+    end
+
+    it 'takes you to add new piece form when you click it' do
+      click_link 'Add New Piece'
+      
+      expect(page).to have_current_path("/galleries/#{@gallery_1.id}/pieces/new")
+      expect(page).to have_content("Add New Piece to #{@gallery_1.name}")
+    end
+  end
 end
