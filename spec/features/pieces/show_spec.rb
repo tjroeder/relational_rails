@@ -62,7 +62,22 @@ RSpec.describe PiecesController, type: :feature do
     end
   end
 
+  describe 'nav element at page top' do
+    it 'has a nav element with links' do
+      expect(page).to have_link("Art Pieces", :href=>"/pieces")
+      expect(page).to have_link("Galleries", :href=>"/galleries")
+    end
 
+    it 'has link to art pieces index' do
+      click_link "Art Pieces"
 
+      expect(page).to have_current_path('/pieces')
+    end
 
+    it 'has link to galleries index' do
+      click_link "Galleries"
+
+      expect(page).to have_current_path('/galleries')
+    end
+  end
 end
