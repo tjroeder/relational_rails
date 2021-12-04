@@ -52,6 +52,12 @@ RSpec.describe '/director/index.html.erb', type: :feature do
 
         expect(page).to have_link("Directors Index", :href=>"/directors")
       end
+      
+      it 'displays a link called New Director' do
+        visit '/directors'
+
+        expect(page).to have_link("New Director", :href=>"/directors/new")
+      end
     end
 
     describe 'can click links' do
@@ -67,6 +73,13 @@ RSpec.describe '/director/index.html.erb', type: :feature do
         click_link 'Directors Index'
         
         expect(page).to have_current_path("/directors")
+      end
+
+      it 'redirect the user to the new director form' do
+        visit '/directors'
+        click_link 'New Director'
+        
+        expect(page).to have_current_path("/directors/new")
       end
     end
   end
