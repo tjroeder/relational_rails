@@ -4,6 +4,8 @@
 </nav>
 
 <h1><%= @director.name %></h1>
+<h2><a href="/directors/<%= @director.id %>/films/new">Create Film</a></h2>
+<br>
 <% @films.each do |film| %>
   <h3><%= film.name %></h3>
   <ul>
