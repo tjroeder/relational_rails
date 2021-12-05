@@ -6,7 +6,6 @@ class DirectorFilmsController < ApplicationController
 
   def new
     @director = Director.find(params[:director_id])
-    @films = @director.films
   end
   
   def create
