@@ -14,7 +14,7 @@ RSpec.describe '/directors/new.html.erb' do
     end
 
     describe 'when they fill in a input forms' do
-      it 'creates a new article' do
+      it 'creates a new Director and returns to /directors' do
         visit '/directors'
         click_on 'Add New Director'
 
@@ -23,6 +23,7 @@ RSpec.describe '/directors/new.html.erb' do
         select 'Yes', from: :tv_credit
         click_on 'Create Director'
 
+        expect(page).to have_current_path('/directors')
         expect(page).to have_content('Taika Waititi')
       end
     end
