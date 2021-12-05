@@ -16,14 +16,14 @@ RSpec.describe PiecesController, type: :feature do
   end
 
   it 'displays each child with its attributes' do
-    expect(page).to have_content(@piece_1.name)
-    expect(page).to have_content(@piece_1.artist)
-    expect(page).to have_content("Original")
-    expect(page).to have_content(@piece_1.year)
+    # expect(page).to have_content(@piece_1.name)
+    # expect(page).to have_content(@piece_1.artist)
+    # expect(page).to have_content("Reprint")
+    # expect(page).to have_content(@piece_1.year)
 
     expect(page).to have_content(@piece_2.name)
     expect(page).to have_content(@piece_2.artist)
-    expect(page).to have_content("Reprint")
+    expect(page).to have_content("Original")
     expect(page).to have_content(@piece_2.year)
   end
 
@@ -43,6 +43,17 @@ RSpec.describe PiecesController, type: :feature do
       click_link "Galleries"
 
       expect(page).to have_current_path('/galleries')
+    end
+  end
+
+  describe 'only original pieces display' do
+    it 'only displays pieces with true boolean for original' do
+      expect(page).to have_content(@piece_2.name)
+    end
+
+    it 'does not display pieces with boolean value falso for original' do
+      expect(page).to have_no_content(@piece_3.name)
+      expect(page).to have_no_content(@piece_1.name)
     end
   end
 end

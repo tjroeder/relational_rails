@@ -4,7 +4,8 @@ RSpec.describe 'Art Piece Info Edit Form', type: :feature do
   before :each do
     @gallery_1 = Gallery.create!(name: "Art 4 Us", non_profit: true, entry_cost: 4.75, created_at: '2021-12-03 20:42:56 UTC')
 
-    @piece_1 = @gallery_1.pieces.create!(name: "Starry Night", artist: "Vincent Van Gogh", year: 1889, original: false)
+    # @piece_1 = @gallery_1.pieces.create!(name: "Starry Night", artist: "Vincent Van Gogh", year: 1889, original: false)
+    @piece_1 = @gallery_1.pieces.create!(name: "Starry Night", artist: "Vincent Van Gogh", year: 1889, original: true)
 
     visit "/pieces/#{@piece_1.id}/edit"
   end
@@ -16,7 +17,8 @@ RSpec.describe 'Art Piece Info Edit Form', type: :feature do
     expect(page).to have_content("#{@piece_1.name}")
     expect(page).to have_content("Artist: #{@piece_1.artist}")
     expect(page).to have_content("Year Created: #{@piece_1.year}")
-    expect(page).to have_content("Original?: Reprint")
+    # expect(page).to have_content("Original?: Reprint")
+    expect(page).to have_content("Original?: Original")
   end
 
   it 'has form heading' do
