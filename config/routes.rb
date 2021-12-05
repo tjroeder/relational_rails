@@ -3,8 +3,10 @@ Rails.application.routes.draw do
   get '/directors', to: 'directors#index'
   get '/directors/new', to: 'directors#new'
   get '/directors/:id', to: 'directors#show'
+  get '/directors/:id/edit', to: 'directors#edit'
   get '/directors/:director_id/films', to: 'director_films#index'
   post '/directors', to: 'directors#create'
+  patch '/directors/:id', to: 'directors#update'
 
   get '/films', to: 'films#index'
   get '/films/:id', to: 'films#show'
