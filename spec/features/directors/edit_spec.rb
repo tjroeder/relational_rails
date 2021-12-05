@@ -25,7 +25,6 @@ RSpec.describe '/directors/:id/edit', type: :feature do
         select 'Yes', from: :tv_credit
         click_on 'Update Director'
 
-        save_and_open_page
         expect(page).to have_current_path("/directors/#{director_1.id}")
         expect(page).to have_content('Dennis Villeneuve')
         expect(page).to have_content('30')

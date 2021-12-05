@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get '/films', to: 'films#index'
   get '/films/:id', to: 'films#show'
+  get '/films/:id/edit', to: 'films#edit'
+  patch '/films/:id', to: 'films#update'
 
   get '/galleries', to: 'galleries#index'
   get '/galleries/new', to: 'galleries#new'

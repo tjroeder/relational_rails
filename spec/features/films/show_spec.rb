@@ -50,6 +50,11 @@ RSpec.describe '/films/show.html.erb', type: :feature do
         visit "/films/#{film_3.id}"
         expect(page).to have_link("Directors Index", :href=>"/directors")
       end
+
+      it 'displays a link called update film' do
+        visit "/films/#{film_1.id}"
+        expect(page).to have_link("Update Film", :href=>"/films/#{film_1.id}/edit")
+      end
     end
 
     describe 'can click links' do
@@ -79,6 +84,12 @@ RSpec.describe '/films/show.html.erb', type: :feature do
         visit "/films/#{film_3.id}"
         click_link 'Directors Index'
         expect(page).to have_current_path("/directors")
+      end
+
+      it 'redirect the user to the film editor' do
+        visit "/films/#{film_1.id}"
+        click_link 'Update Film'
+        expect(page).to have_current_path("/films/#{film_1.id}/edit")
       end
     end
   end
