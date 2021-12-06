@@ -7,7 +7,9 @@
 
 <h3><u>Original Pieces</u></h3>
 <% @pieces.original_only.each do |piece| %>
-    <h5> <a href="/pieces/<%= piece.id %>"> <%= piece.name %> </a></h5>
+  <section style="padding: 10px; border: 2px solid red;">
+    <h3> <a href="/pieces/<%= piece.id %>"> <%= piece.name %> </a></h3>
+    <p id="<%= piece.id %>"> <%= link_to "Edit", "/pieces/#{piece.id}/edit" %> </p>
     <p> Artist: <%= piece.artist %> </p>
     <p> Year Created: <%= piece.year %> </p>
     <p> Original?:
@@ -17,5 +19,6 @@
         Reprint
       <% end %>
     </p>
+  </section>
 
 <% end %>
