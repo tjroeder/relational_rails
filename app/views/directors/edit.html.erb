@@ -1,0 +1,13 @@
+<h1>Edit Director</h1>
+<%= form_with url: "/directors/#{@director.id}", method: :patch, local: true do |f| %>
+    <%= f.label :name, 'Director Full Name:' %>
+    <%= f.text_field :name %>
+    <br>
+    <%= f.label :imdb_rank, 'IMDB Ranking:' %>
+    <%= f.number_field :imdb_rank, in: 0..100, step: 1 %>
+    <br>
+    <%= f.label :tv_credit, 'TV Credit:' %>
+    <%= f.select :tv_credit, ['Yes', 'No'], selected: 'No' %>
+    <br>
+    <%= f.submit 'Update Director' %>
+<% end %>

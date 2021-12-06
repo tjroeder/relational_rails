@@ -1,0 +1,13 @@
+<h1>New Director Film</h1>
+<%= form_with url: "/directors/#{@director.id}/films", method: :post, local: true do |f| %>
+    <%= f.label :name, 'Film Name:' %>
+    <%= f.text_field :name %>
+    <br>
+    <%= f.label :rt_rank, 'Rotten Tomatoes Rank:' %>
+    <%= f.number_field :rt_rank, in: 0..100, step: 1 %>
+    <br>
+    <%= f.label :nominated, 'Award Nominated Film:' %>
+    <%= f.select :nominated, ['Yes', 'No'], selected: 'No' %>
+    <br>
+    <%= f.submit 'Create Film' %>
+<% end %>

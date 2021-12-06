@@ -57,6 +57,18 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
         visit "/directors/#{director_3.id}/films"
         expect(page).to have_link("Directors Index", :href=>"/directors")
       end
+
+      it 'displays a link called create film' do
+        visit "/directors/#{director_1.id}/films"
+        
+        expect(page).to have_link("Create Film", :href=>"/directors/#{director_1.id}/films/new")
+      end
+
+      it 'displays a link to sort alphabetically' do
+        visit "/directors/#{director_1.id}/films"
+
+        expect(page).to have_link("Sort alphabetical", :href=>"/directors/#{director_1.id}/films?sort=asc")
+      end
     end
 
     describe 'can click links' do
@@ -86,6 +98,29 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
         visit "/directors/#{director_3.id}/films"
         click_link 'Directors Index'
         expect(page).to have_current_path("/directors")
+      end
+
+      it 'redirect the user to create new film' do
+        visit "/directors/#{director_1.id}/films"
+        click_link 'Create Film'
+        
+        expect(page).to have_current_path("/directors/#{director_1.id}/films/new")
+      end
+
+      it 'can reload the page with films sorted alphabetically' do
+        film_4 = director_1.films.create!(name: 'Darjeeling Limited', rt_rank: 47, nominated: true)
+
+        visit "/directors/#{director_1.id}/films"
+        expect(film_1.name).to appear_before(film_2.name)
+        expect(film_1.name).to appear_before(film_4.name)
+        expect(film_2.name).to appear_before(film_4.name)
+
+        click_link 'Sort alphabetical'
+        
+        expect(page).to have_current_path("/directors/#{director_1.id}/films?sort=asc")
+        expect(film_1.name).to appear_before(film_4.name)
+        expect(film_1.name).to appear_before(film_2.name)
+        expect(film_4.name).to appear_before(film_2.name)
       end
     end
   end

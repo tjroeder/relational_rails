@@ -4,7 +4,8 @@
 </nav>
 
 <h1><%= @film.name %></h1>
+<h2><a href="/films/<%= @film.id %>/edit">Update Film</a></h2>
 <ul>
   <li>Rotten Tomatoes Rank: <%= @film.rt_rank %></li>
-  <li>Award Nomintated Film: <%= @film.nominated %></li>
+  <li>Award Nominated Film: <%= @film.nominated %></li>
 <ul>
