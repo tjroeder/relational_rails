@@ -11,7 +11,10 @@
   <h2>Galleries:</h2>
 
 <% @galleries.each do |gallery| %>
-  <h3><a href="/galleries/<%= gallery.id %>"> <%= gallery.name %></a> </h3>
-  <p>Created At: <%= gallery.created_at %></p>
+  <section style="padding: 10px; border: 2px solid red;">
+    <h3><a href="/galleries/<%= gallery.id %>"> <%= gallery.name %></a> </h3>
+    <%= link_to "Edit #{gallery.name} Info", "/galleries/#{gallery.id}/edit" %>
+    <p>Created At: <%= gallery.created_at %></p>
+  </section>
 <% end %>
 </section>

@@ -42,4 +42,16 @@ RSpec.describe GalleriesController, type: :feature do
       expect(page).to have_current_path('/galleries')
     end
   end
+
+  describe 'gellery page index link' do
+    it 'has a link that goes to edit page' do
+      expect(page).to have_link("Edit #{@gallery_1.name} Info", :href=>"/galleries/#{@gallery_1.id}/edit")
+    end
+
+    it 'navigates to gallery info edit form page' do
+      click_link "Edit #{@gallery_1.name} Info"
+
+      expect(current_path).to eq("/galleries/#{@gallery_1.id}/edit")
+    end
+  end
 end
