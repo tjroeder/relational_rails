@@ -53,9 +53,27 @@ RSpec.describe 'Gallery pieces index' do
 
     it 'takes you to add new piece form when you click it' do
       click_link 'Add New Piece'
-      
+
       expect(page).to have_current_path("/galleries/#{@gallery_1.id}/pieces/new")
       expect(page).to have_content("Add New Piece to #{@gallery_1.name}")
+    end
+  end
+
+  describe 'sort alphabetically link' do
+    it 'has a link to sort alphabetically' do
+      expect(page).to have_link('Sort Alphabetically', :href=>"/galleries/#{@gallery_1.id}/pieces?sort=asc")
+    end
+
+    it 'sorts pieces alphabetically by name' do
+      piece_4 = @gallery_1.pieces.create!(name: "ZZZZZ", artist: "Johannes Vermeer", year: 1665, original: false)
+      piece_5 = @gallery_1.pieces.create!(name: "AAAAAA", artist: "Johannes Vermeer", year: 1665, original: false)
+
+      visit "/galleries/#{@gallery_1.id}/pieces"
+      click_link "Sort Alphabetically"
+
+      expect(piece_5.name).to appear_before(@piece_2.name, only_text: true)
+      expect(@piece_2.name).to appear_before(@piece_1.name, only_text: true)
+      expect(@piece_1.name).to appear_before(piece_4.name, only_text: true)
     end
   end
 end
