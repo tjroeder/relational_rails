@@ -6,19 +6,22 @@
 <h1><%= @gallery.name %></h1>
 <%= link_to 'Sort Alphabetically', "/galleries/#{@gallery.id}/pieces?sort=asc" %>
 <% @pieces.each do |piece| %>
-  <h3><%= piece.name %></h3>
+  <section style="padding: 10px; border: 2px solid red;">
+    <h3><%= piece.name %></h3>
+    <p id="<%= piece.id %>"> <%= link_to "Edit", "/pieces/#{piece.id}/edit" %> </p>
 
-  <ul>
-    <li>Artist: <%= piece.artist %> </li>
-    <li>Year Created: <%= piece.year %> </li>
-    <li>Original?:
-      <% if piece.original == true %>
-        Original
-      <% else %>
-        Reprint
-      <% end %>
-    </li>
-  </ul>
+    <ul>
+      <li>Artist: <%= piece.artist %> </li>
+      <li>Year Created: <%= piece.year %> </li>
+      <li>Original?:
+        <% if piece.original == true %>
+          Original
+        <% else %>
+          Reprint
+        <% end %>
+      </li>
+    </ul>
+  </section>
 
 <% end %>
 
