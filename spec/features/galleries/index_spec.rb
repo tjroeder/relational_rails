@@ -43,15 +43,21 @@ RSpec.describe GalleriesController, type: :feature do
     end
   end
 
-  describe 'gellery page index link' do
+  describe 'gallery page index link' do
     it 'has a link that goes to edit page' do
-      expect(page).to have_link("Edit #{@gallery_1.name} Info", :href=>"/galleries/#{@gallery_1.id}/edit")
+      expect(page).to have_link("Edit", :href=>"/galleries/#{@gallery_1.id}/edit")
     end
 
     it 'navigates to gallery info edit form page' do
-      click_link "Edit #{@gallery_1.name} Info"
+      page.find(:css, "##{@gallery_1.id}").click_on
 
       expect(current_path).to eq("/galleries/#{@gallery_1.id}/edit")
+    end
+
+    it 'works for different links' do
+      page.find(:css, "##{@gallery_2.id}").click_on
+
+      expect(current_path).to eq("/galleries/#{@gallery_2.id}/edit")
     end
   end
 end
