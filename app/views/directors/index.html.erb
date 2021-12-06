@@ -7,5 +7,7 @@
 <h2><a href="/directors/new">Add New Director</a></h2>
 <br>
 <% @directors.desc_order_by_created.each do |director| %>
-  <p><%= director.name %> - Created at: <%= director.created_at %></p>
+  <p id="<%= director.id %>"><%= director.name %> -
+  <%= link_to 'Edit Director', "/directors/#{director.id}/edit" %> -
+  Created at: <%= director.created_at %></p>
 <% end %>
