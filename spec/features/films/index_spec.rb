@@ -21,6 +21,8 @@ RSpec.describe '/films/index.html.erb', type: :feature do
       it 'displays films names with nominated status' do
         visit '/films'
 
+        expect(page).to have_no_content(film_1.name)
+        expect(page).to have_no_content(film_2.name)
         expect(page).to have_content(film_3.name)
         expect(page).to have_content(film_4.name)
       end
@@ -28,13 +30,17 @@ RSpec.describe '/films/index.html.erb', type: :feature do
       it 'displays films RT rank with nominated status' do
         visit '/films'
         
+        expect(page).to have_no_content(film_1.rt_rank)
+        expect(page).to have_no_content(film_2.rt_rank)
         expect(page).to have_content(film_3.rt_rank)
         expect(page).to have_content(film_4.rt_rank)
       end
-
+      
       it 'displays films with nominated status' do
         visit '/films'
         
+        expect(page).to have_no_content(film_1.nominated)
+        expect(page).to have_no_content(film_2.nominated)
         expect(page).to have_content(film_3.nominated)
         expect(page).to have_content(film_4.nominated)
       end
@@ -42,13 +48,19 @@ RSpec.describe '/films/index.html.erb', type: :feature do
       it 'displays a link called Films Index' do
         visit '/films'
 
-        expect(page).to have_link("Films Index", :href=>"/films")
+        expect(page).to have_link("Films Index", href: "/films")
       end
 
       it 'displays a link called Directors Index' do
         visit '/films'
 
-        expect(page).to have_link("Directors Index", :href=>"/directors")
+        expect(page).to have_link("Directors Index", href: "/directors")
+      end
+
+      it 'displays a link called Edit Film' do
+        visit '/films'
+
+        expect(page).to have_link("Edit Film", href: "/films/#{film_3.id}/edit")
       end
     end
 
@@ -65,6 +77,13 @@ RSpec.describe '/films/index.html.erb', type: :feature do
         click_link 'Directors Index'
         
         expect(page).to have_current_path("/directors")
+      end
+
+      it 'redirect the user to Edit Film' do
+        visit '/films'
+        page.find(:css, "##{film_3.id}").click_on
+
+        expect(page).to have_current_path("/films/#{film_3.id}/edit")
       end
     end
   end
