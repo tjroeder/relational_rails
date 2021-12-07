@@ -101,4 +101,37 @@ RSpec.describe PiecesController, type: :feature do
       expect(page).to have_content("Update #{@piece_1.name}")
     end
   end
+
+  describe 'delete button on pieces show page and #delete method in pieces_controller' do
+    before :each do
+      visit "/pieces/#{@piece_1.id}"
+    end
+    it 'has a link to route a delete request' do
+      expect(page).to have_link("Delete", href: "/pieces/#{@piece_1.id}")
+    end
+
+    it 'deletes the piece from the database and redirects to pieces index' do
+      click_link "Delete"
+
+      expect(current_path).to eq("/pieces")
+
+      expect(page). to have_content(@piece_2.name)
+      expect(page). to have_content(@piece_3.name)
+
+      expect(page). to have_no_content(@piece_1.name)
+
+      click_link @piece_2.name
+
+      expect(current_path).to eq("/pieces/#{@piece_2.id}")
+
+      click_link "Delete"
+
+      expect(current_path).to eq("/pieces")
+
+      expect(page). to have_content(@piece_3.name)
+
+      expect(page). to have_no_content(@piece_2.name)
+      expect(page). to have_no_content(@piece_1.name)
+    end
+  end
 end
