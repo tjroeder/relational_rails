@@ -31,4 +31,5 @@ Rails.application.routes.draw do
   get '/pieces/:id', to: 'pieces#show'
   get '/pieces/:id/edit', to: 'pieces#edit'
   patch '/pieces/:id', to: 'pieces#update'
+  delete '/pieces/:id', to: 'pieces#delete'
 end
