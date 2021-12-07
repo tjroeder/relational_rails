@@ -41,4 +41,16 @@ class GalleriesController < ApplicationController
     redirect_to "/galleries/#{gallery.id}"
   end
 
+  def delete
+    gallery = Gallery.find(params[:id])
+    pieces = gallery.pieces.all
+
+    pieces.each do |piece|
+      Piece.destroy(piece.id)
+    end
+
+    Gallery.destroy(gallery.id)
+
+    redirect_to "/galleries"
+  end
 end
