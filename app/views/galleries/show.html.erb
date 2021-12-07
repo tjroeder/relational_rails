@@ -21,4 +21,4 @@
 </ul>
 
 <h2><a href="/galleries/<%= @gallery.id %>/edit">Edit Gallery Info</a></h2>
-<%= link_to "Delete", "/galleries/#{@gallery.id}", method: :delete %>
+<%= link_to "Delete", "/galleries/#{@gallery.id}", method: :delete, data: {confirm: "Really delete the article?"} %>
