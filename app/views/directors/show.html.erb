@@ -11,3 +11,4 @@
   <li>TV Credit: <%= @director.tv_credit %></li>
 </ul>
 <a href="/directors/<%= @director.id %>/edit">Update Director</a>
+<%= button_to 'Delete Director', "/directors/#{@director.id}", method: :delete %>

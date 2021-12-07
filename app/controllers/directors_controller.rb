@@ -1,10 +1,11 @@
 class DirectorsController < ApplicationController
+  before_action :set_director, only: [:show, :edit, :update, :destroy]
+
   def index
     @directors = Director.all
   end
 
   def show
-    @director = Director.find(params[:id])
   end
 
   def new
@@ -20,18 +21,25 @@ class DirectorsController < ApplicationController
   end
 
   def edit
-    @director = Director.find(params[:id])
   end
   
   def update
-    @director = Director.find(params[:id])
     @director.update(director_params)
     redirect_to "/directors/#{@director.id}"
+  end
+
+  def destroy
+    @director.destroy
+    redirect_to "/directors"
   end
 
   private
 
   def director_params
     params.permit(:name, :imdb_rank, :tv_credit)
+  end
+
+  def set_director
+    @director = Director.find(params[:id])
   end
 end

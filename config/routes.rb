@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post '/directors', to: 'directors#create'
   post '/directors/:director_id/films', to: 'director_films#create'
   patch '/directors/:id', to: 'directors#update'
+  delete '/directors/:id', to: 'directors#destroy'
 
   get '/films', to: 'films#index'
   get '/films/:id', to: 'films#show'
