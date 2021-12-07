@@ -1,11 +1,13 @@
 class GalleryPiecesController < ApplicationController
 
   def index
+    @gallery = Gallery.find(params[:gallery_id])
+
     if params[:sort]
-      @gallery = Gallery.find(params[:gallery_id])
       @pieces = @gallery.pieces.order(name: params[:sort])
+    elsif params[:filter]
+      @pieces = @gallery.pieces.created_after( params[:filter])
     else
-      @gallery = Gallery.find(params[:gallery_id])
       @pieces = @gallery.pieces
     end
   end
