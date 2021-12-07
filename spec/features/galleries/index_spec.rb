@@ -60,4 +60,26 @@ RSpec.describe GalleriesController, type: :feature do
       expect(current_path).to eq("/galleries/#{@gallery_2.id}/edit")
     end
   end
+
+  describe 'delete button on galleries index page' do
+    it 'has a link to route a delete request' do
+      expect(current_path).to eq("/galleries")
+      expect(page).to have_link("Delete", href: "/galleries/#{@gallery_1.id}")
+      expect(page).to have_link("Delete", href: "/galleries/#{@gallery_2.id}")
+    end
+
+    it 'deletes the piece from the database and redirects to pieces index' do
+      page.find(:css, "#delete#{@gallery_1.id}").click_on
+
+      expect(page).to have_content(@gallery_2.name)
+      expect(page).to have_no_content(@gallery_1.name)
+
+      page.find(:css, "#delete#{@gallery_2.id}").click_on
+
+      expect(current_path).to eq("/galleries")
+
+      expect(page).to have_no_content(@gallery_1.name)
+      expect(page).to have_no_content(@gallery_2.name)
+    end
+  end
 end
