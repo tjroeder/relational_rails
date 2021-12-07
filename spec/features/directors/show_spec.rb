@@ -85,6 +85,17 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
         visit "/directors/#{director_3.id}"
         expect(page).to have_link("Update Director", href: "/directors/#{director_3.id}/edit")
       end
+
+      it 'displays a link called Delete Director' do
+        visit "/directors/#{director_1.id}"
+        expect(page).to have_button("Delete Director")
+        
+        visit "/directors/#{director_2.id}"
+        expect(page).to have_button("Delete Director")
+
+        visit "/directors/#{director_3.id}"
+        expect(page).to have_button("Delete Director")
+      end
     end
 
     describe 'can click links' do
@@ -132,9 +143,35 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
 
       it 'redirects the user to the Directors edit page' do
         visit "/directors/#{director_1.id}"
-        click_link "Update Director"
+        click_link 'Update Director'
 
         expect(page).to have_current_path("/directors/#{director_1.id}/edit")
+      end
+
+      it 'redirects the user to the Directors index after deleting director' do
+        visit "/directors/#{director_1.id}"
+        click_button 'Delete Director'
+
+        expect(page).to have_current_path('/directors')
+      end
+
+      it 'deletes director and directors films after select Delete Director' do
+        film_4 = director_3.films.create!(name: 'Star Wars: Empire Strikes Back', rt_rank: 1, nominated: true)
+        film_5 = director_2.films.create!(name: 'Schindlers List', rt_rank: 2, nominated: true)
+
+        visit "/directors/#{director_3.id}"
+        click_button 'Delete Director'
+
+        expect(page).to have_no_content(director_3.name)
+        expect(page).to have_no_content(director_3.imdb_rank)
+        
+        visit "/films"
+        expect(page).to have_content(film_5.name)
+        expect(page).to have_content(film_5.rt_rank)
+        expect(page).to have_no_content(film_3.name)
+        expect(page).to have_no_content(film_3.rt_rank)
+        expect(page).to have_no_content(film_4.name)
+        expect(page).to have_no_content(film_4.rt_rank)
       end
     end
   end
