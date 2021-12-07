@@ -5,7 +5,7 @@
 
 <h1>Films Index</h1>
 <% @films.nominated_only.each do |film| %>
-  <h3><%= film.name %></h3>
+  <h3 id="<%= film.id %>"><%= film.name %> - <%= link_to 'Edit Film', "/films/#{film.id}/edit" %></h3>
   <ul>
     <li>Rotten Tomatoes Ranking: <%= film.rt_rank %></li>
     <li>Award Nominated Film: <%= film.nominated %></li>

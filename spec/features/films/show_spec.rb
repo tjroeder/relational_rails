@@ -31,29 +31,29 @@ RSpec.describe '/films/show.html.erb', type: :feature do
 
       it 'displays a link called Films Index' do
         visit "/films/#{film_1.id}"
-        expect(page).to have_link("Films Index", :href=>"/films")
+        expect(page).to have_link("Films Index", href: "/films")
 
         visit "/films/#{film_2.id}"
-        expect(page).to have_link("Films Index", :href=>"/films")
+        expect(page).to have_link("Films Index", href: "/films")
         
         visit "/films/#{film_3.id}"
-        expect(page).to have_link("Films Index", :href=>"/films")
+        expect(page).to have_link("Films Index", href: "/films")
       end
 
       it 'displays a link called Directors Index' do
         visit "/films/#{film_1.id}"
-        expect(page).to have_link("Directors Index", :href=>"/directors")
+        expect(page).to have_link("Directors Index", href: "/directors")
 
         visit "/films/#{film_2.id}"
-        expect(page).to have_link("Directors Index", :href=>"/directors")
+        expect(page).to have_link("Directors Index", href: "/directors")
         
         visit "/films/#{film_3.id}"
-        expect(page).to have_link("Directors Index", :href=>"/directors")
+        expect(page).to have_link("Directors Index", href: "/directors")
       end
 
       it 'displays a link called update film' do
         visit "/films/#{film_1.id}"
-        expect(page).to have_link("Update Film", :href=>"/films/#{film_1.id}/edit")
+        expect(page).to have_link("Update Film", href: "/films/#{film_1.id}/edit")
       end
     end
 

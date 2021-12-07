@@ -38,36 +38,42 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
 
       it 'displays a link called Films Index' do
         visit "/directors/#{director_1.id}/films"
-        expect(page).to have_link("Films Index", :href=>"/films")
+        expect(page).to have_link("Films Index", href: "/films")
 
         visit "/directors/#{director_2.id}/films"
-        expect(page).to have_link("Films Index", :href=>"/films")
+        expect(page).to have_link("Films Index", href: "/films")
         
         visit "/directors/#{director_3.id}/films"
-        expect(page).to have_link("Films Index", :href=>"/films")
+        expect(page).to have_link("Films Index", href: "/films")
       end
 
       it 'displays a link called Directors Index' do
         visit "/directors/#{director_1.id}/films"
-        expect(page).to have_link("Directors Index", :href=>"/directors")
+        expect(page).to have_link("Directors Index", href: "/directors")
 
         visit "/directors/#{director_2.id}/films"
-        expect(page).to have_link("Directors Index", :href=>"/directors")
+        expect(page).to have_link("Directors Index", href: "/directors")
         
         visit "/directors/#{director_3.id}/films"
-        expect(page).to have_link("Directors Index", :href=>"/directors")
+        expect(page).to have_link("Directors Index", href: "/directors")
       end
 
       it 'displays a link called create film' do
         visit "/directors/#{director_1.id}/films"
         
-        expect(page).to have_link("Create Film", :href=>"/directors/#{director_1.id}/films/new")
+        expect(page).to have_link("Create Film", href: "/directors/#{director_1.id}/films/new")
       end
 
       it 'displays a link to sort alphabetically' do
         visit "/directors/#{director_1.id}/films"
 
-        expect(page).to have_link("Sort alphabetical", :href=>"/directors/#{director_1.id}/films?sort=asc")
+        expect(page).to have_link("Sort alphabetical", href: "/directors/#{director_1.id}/films?sort=asc")
+      end
+
+      it 'displays a link called Edit Film' do
+        visit "/directors/#{director_1.id}/films"
+
+        expect(page).to have_link("Edit Film", href: "/films/#{film_1.id}/edit")
       end
     end
 
@@ -121,6 +127,13 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
         expect(film_1.name).to appear_before(film_4.name)
         expect(film_1.name).to appear_before(film_2.name)
         expect(film_4.name).to appear_before(film_2.name)
+      end
+
+      it 'redirect the user to edit film' do
+        visit "/directors/#{director_1.id}/films"
+        page.find(:css, "##{film_1.id}").click_on
+
+        expect(page).to have_current_path("/films/#{film_1.id}/edit")
       end
     end
   end

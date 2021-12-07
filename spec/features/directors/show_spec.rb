@@ -44,46 +44,46 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
       
       it 'displays a link called Films Index' do
         visit "/directors/#{director_1.id}"
-        expect(page).to have_link("Films Index", :href=>"/films")
+        expect(page).to have_link("Films Index", href: "/films")
 
         visit "/directors/#{director_2.id}"
-        expect(page).to have_link("Films Index", :href=>"/films")
+        expect(page).to have_link("Films Index", href: "/films")
         
         visit "/directors/#{director_3.id}"
-        expect(page).to have_link("Films Index", :href=>"/films")
+        expect(page).to have_link("Films Index", href: "/films")
       end
 
       it 'displays a link called Directors Index' do
         visit "/directors/#{director_1.id}"
-        expect(page).to have_link("Directors Index", :href=>"/directors")
+        expect(page).to have_link("Directors Index", href: "/directors")
 
         visit "/directors/#{director_2.id}"
-        expect(page).to have_link("Directors Index", :href=>"/directors")
+        expect(page).to have_link("Directors Index", href: "/directors")
         
         visit "/directors/#{director_3.id}"
-        expect(page).to have_link("Directors Index", :href=>"/directors")
+        expect(page).to have_link("Directors Index", href: "/directors")
       end
 
       it 'displays a link called Directors name films Index' do
         visit "/directors/#{director_1.id}"
-        expect(page).to have_link("#{director_1.name}'s Films Index", :href=>"/directors/#{director_1.id}/films")
+        expect(page).to have_link("#{director_1.name}'s Films Index", href: "/directors/#{director_1.id}/films")
 
         visit "/directors/#{director_2.id}"
-        expect(page).to have_link("#{director_2.name}'s Films Index", :href=>"/directors/#{director_2.id}/films")
+        expect(page).to have_link("#{director_2.name}'s Films Index", href: "/directors/#{director_2.id}/films")
         
         visit "/directors/#{director_3.id}"
-        expect(page).to have_link("#{director_3.name}'s Films Index", :href=>"/directors/#{director_3.id}/films")
+        expect(page).to have_link("#{director_3.name}'s Films Index", href: "/directors/#{director_3.id}/films")
       end
 
       it 'displays a link called Update Director' do
         visit "/directors/#{director_1.id}"
-        expect(page).to have_link("Update Director", :href=>"/directors/#{director_1.id}/edit")
+        expect(page).to have_link("Update Director", href: "/directors/#{director_1.id}/edit")
 
         visit "/directors/#{director_2.id}"
-        expect(page).to have_link("Update Director", :href=>"/directors/#{director_2.id}/edit")
+        expect(page).to have_link("Update Director", href: "/directors/#{director_2.id}/edit")
 
         visit "/directors/#{director_3.id}"
-        expect(page).to have_link("Update Director", :href=>"/directors/#{director_3.id}/edit")
+        expect(page).to have_link("Update Director", href: "/directors/#{director_3.id}/edit")
       end
     end
 
