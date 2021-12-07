@@ -4,7 +4,14 @@
 </nav>
 
 <h1><%= @gallery.name %></h1>
-<%= link_to 'Sort Alphabetically', "/galleries/#{@gallery.id}/pieces?sort=asc" %>
+<%= link_to 'Sort Alphabetically', "/galleries/#{@gallery.id}/pieces?sort=asc" %><br><br>
+
+<%= form_with url: "/galleries/#{@gallery.id}/pieces", method: :get, local: true do |f| %>
+  <%= f.label :filter, "Pieces created after year:" %>
+  <%= f.number_field :filter %>
+  <%= f.submit 'Filter' %>
+<% end %><br>
+
 <% @pieces.each do |piece| %>
   <section style="padding: 10px; border: 2px solid red;">
     <h3><%= piece.name %></h3>
