@@ -13,10 +13,7 @@ class DirectorsController < ApplicationController
   end
 
   def create
-    # @director = Director.new(director_params)
-    # @director.save
     @director = Director.create!(director_params)
-
     redirect_to '/directors'
   end
 
@@ -30,7 +27,7 @@ class DirectorsController < ApplicationController
 
   def destroy
     @director.destroy
-    redirect_to "/directors"
+    redirect_to '/directors'
   end
 
   private
