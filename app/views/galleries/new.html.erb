@@ -1,0 +1,24 @@
+<nav>
+  <a href="/pieces">Art Pieces</a>
+  <a href="/galleries">Galleries</a>
+</nav>
+
+<form action="/galleries" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <p>Enter Gallery Information:</p>
+
+  <label for="gname">Gallery Name:</label>
+  <input type='text' name='gallery[name]' placeholder="Willy's Art Room" required><br><br>
+
+  <label for="gentrycost">Entry Cost (in USD):</label>
+  <!-- <input type='text' name='gallery[entry_cost]' placeholder='5.75' required><br><br> -->
+  <input type='number' name='gallery[entry_cost]' min="0" step="0.01" placeholder='5.75'><br><br>
+
+  <p>NPO Status:</p>
+  <input type='radio' name='gallery[non_profit]' value="true" checked required>
+  <label for='npoyes'>NPO</label><br><br>
+  <input type='radio' name='gallery[non_profit]' value="false" required>
+  <label for='npono'>Other</label><br><br>
+  <input type='submit' value='Submit'>
+</form>

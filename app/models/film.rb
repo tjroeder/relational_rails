@@ -3,4 +3,8 @@ class Film < ApplicationRecord
 
   validates_presence_of :name, :rt_rank
   validates :nominated, inclusion: [true, false]
+
+  def self.nominated_only
+    where(nominated: true)
+  end
 end

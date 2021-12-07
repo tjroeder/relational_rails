@@ -8,6 +8,7 @@ RSpec.describe 'Gallery pieces index' do
     @piece_1 = @gallery_1.pieces.create!(name: "Starry Night", artist: "Vincent Van Gogh", year: 1889, original: false)
     @piece_2 = @gallery_1.pieces.create!(name: "Self Portrait", artist: "Vincent Van Gogh", year: 1889, original: true)
     @piece_3 = @gallery_2.pieces.create!(name: "Girl with the Pearl Earring", artist: "Johannes Vermeer", year: 1665, original: false)
+    @piece_4 = @gallery_1.pieces.create!(name: "Mona Lisa", artist: "Leonardo DaVinci", year: 1665, original: true, gallery_id: @gallery_2.id)
 
     visit "/galleries/#{@gallery_1.id}/pieces"
   end
@@ -43,6 +44,56 @@ RSpec.describe 'Gallery pieces index' do
       click_link "Galleries"
 
       expect(page).to have_current_path('/galleries')
+    end
+  end
+
+  describe 'add new pieces link' do
+    it 'has link to add new piece page' do
+      expect(page).to have_link("Add New Piece", :href=>"/galleries/#{@gallery_1.id}/pieces/new")
+    end
+
+    it 'takes you to add new piece form when you click it' do
+      click_link 'Add New Piece'
+
+      expect(page).to have_current_path("/galleries/#{@gallery_1.id}/pieces/new")
+      expect(page).to have_content("Add New Piece to #{@gallery_1.name}")
+    end
+  end
+
+  describe 'sort alphabetically link' do
+    it 'has a link to sort alphabetically' do
+      expect(page).to have_link('Sort Alphabetically', :href=>"/galleries/#{@gallery_1.id}/pieces?sort=asc")
+    end
+
+    it 'sorts pieces alphabetically by name' do
+      piece_4 = @gallery_1.pieces.create!(name: "ZZZZZ", artist: "Johannes Vermeer", year: 1665, original: false)
+      piece_5 = @gallery_1.pieces.create!(name: "AAAAAA", artist: "Johannes Vermeer", year: 1665, original: false)
+
+      visit "/galleries/#{@gallery_1.id}/pieces"
+      click_link "Sort Alphabetically"
+
+      expect(piece_5.name).to appear_before(@piece_2.name, only_text: true)
+      expect(@piece_2.name).to appear_before(@piece_1.name, only_text: true)
+      expect(@piece_1.name).to appear_before(piece_4.name, only_text: true)
+    end
+  end
+
+  describe 'edit piece info link' do
+    it 'has a link that navigates to piece edit info page' do
+      expect(page).to have_link("Edit", :href=>"/pieces/#{@piece_4.id}/edit")
+      expect(page).to have_link("Edit", :href=>"/pieces/#{@piece_2.id}/edit")
+    end
+
+    it 'naviagtes to the edit page' do
+      page.find(:css, "##{@piece_4.id}").click_on
+
+      expect(current_path).to eq("/pieces/#{@piece_4.id}/edit")
+
+      visit "/pieces"
+
+      page.find(:css, "##{@piece_2.id}").click_on
+
+      expect(current_path).to eq("/pieces/#{@piece_2.id}/edit")
     end
   end
 end

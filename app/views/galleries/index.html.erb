@@ -5,8 +5,17 @@
 
 <h1>Galleries Index</h1>
 
+<h2><a href="/galleries/new">Add New Gallery</a></h2>
+
+<section>
+  <h2>Galleries:</h2>
+
 <% @galleries.each do |gallery| %>
-  <h3><a href="/galleries/<%= gallery.id %>"> <%= gallery.name %></a> </h3>
-  <p>Created At: <%= gallery.created_at %></p>
+  <section style="padding: 10px; border: 2px solid red;">
+    <p> <b><a href="/galleries/<%= gallery.id %>"> <%= gallery.name %></a></b> </p>
+    <p id="<%= gallery.id %>"> <%= link_to "Edit", "/galleries/#{gallery.id}/edit" %> </p>
+    <p>Created At: <%= gallery.created_at %></p>
+  </section>
 
 <% end %>
+</section>

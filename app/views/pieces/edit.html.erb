@@ -1,0 +1,36 @@
+<h1>Update Child</h1>
+
+<h3>Update <%= @piece.name %>:</h3>
+
+<form action="/pieces/:id" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
+
+  <input type="hidden" name="piece[gallery_id]" value="<%= @piece.gallery_id %>">
+  <input type="hidden" name="piece[id]" value="<%= @piece.id %>">
+
+  <label for="piecename">Name of Piece:</label>
+  <input type='text' name='piece[name]' value="<%= @piece.name %>" required><br><br>
+
+  <label for="artistname">Artist:</label>
+  <input type='text' name='piece[artist]' value="<%= @piece.artist %>" required><br><br>
+
+  <label for="yearmade">Entry Cost (in USD):</label>
+  <!-- <input type='text' name='piece[year]' value='<%= @piece.year %>' required><br><br> -->
+  <input type='number' name='piece[year]' min='0' value='<%= @piece.year %>' required><br><br>
+
+
+  <p>Currently Marked As:
+    <% if @piece.original == true %>
+      Original
+    <% else %>
+      Re-Print
+    <% end %>
+  </p>
+  <p>Is this an Original Piece:</p>
+  <input type='radio' name='piece[original]' value="true"  required>
+  <label for='originalyes'>Yes</label><br><br>
+  <input type='radio' name='piece[original]' value="false" required>
+  <label for='originalno'>No</label><br><br>
+  <input type='submit' value='Submit'>
+</form>

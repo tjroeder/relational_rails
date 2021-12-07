@@ -5,16 +5,20 @@
 
 <h1>Art Pieces</h1>
 
-<% @pieces.each do |piece| %>
-  <h3> <a href="/pieces/<%= piece.id %>"> <%= piece.name %> </a></h3>
-  <p> Artist: <%= piece.artist %> </p>
-  <p> Year Created: <%= piece.year %> </p>
-  <p> Original?:
-    <% if piece.original == true %>
-      Original
-    <% else %>
-      Reprint
-    <% end %>
-  </p>
+<h3><u>Original Pieces</u></h3>
+<% @pieces.original_only.each do |piece| %>
+  <section style="padding: 10px; border: 2px solid red;">
+    <h3> <a href="/pieces/<%= piece.id %>"> <%= piece.name %> </a></h3>
+    <p id="<%= piece.id %>"> <%= link_to "Edit", "/pieces/#{piece.id}/edit" %> </p>
+    <p> Artist: <%= piece.artist %> </p>
+    <p> Year Created: <%= piece.year %> </p>
+    <p> Original?:
+      <% if piece.original == true %>
+        Original
+      <% else %>
+        Reprint
+      <% end %>
+    </p>
+  </section>
 
 <% end %>

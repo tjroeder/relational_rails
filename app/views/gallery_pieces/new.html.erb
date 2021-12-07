@@ -1,0 +1,29 @@
+<nav>
+  <a href="/pieces">Art Pieces</a>
+  <a href="/galleries">Galleries</a>
+</nav><br>
+
+
+<h3>Add New Piece to <%= @gallery.name %>:</h3>
+<form action="/galleries/:gallery_id/pieces" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <input type="hidden" name="piece[gallery_id]" value="<%= @gallery.id %>">
+
+  <label for="piecename">Name of Piece:</label>
+  <input type='text' name='piece[name]' placeholder="Mona Lisa" required><br><br>
+
+  <label for="artistname">Artist:</label>
+  <input type='text' name='piece[artist]' placeholder="Lonardo DaVinci" required><br><br>
+
+  <label for="yearmade">Entry Cost (in USD):</label>
+  <!-- <input type='text' name='piece[year]' placeholder='1503' required><br><br> -->
+  <input type='number' name='piece[year]' placeholder='1503' required><br><br>
+
+  <p>Is it an Original Piece:</p>
+  <input type='radio' name='piece[original]' value="true" checked required>
+  <label for='originalyes'>Yes</label><br><br>
+  <input type='radio' name='piece[original]' value="false" required>
+  <label for='originalno'>No</label><br><br>
+  <input type='submit' value='Submit'>
+</form>
