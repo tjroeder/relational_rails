@@ -98,7 +98,7 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
       end
     end
 
-    describe 'can click links' do
+    describe 'can click links or buttons' do
       it 'redirects the user to the Films index' do
         visit "/directors/#{director_1.id}"
         click_link 'Films Index'
