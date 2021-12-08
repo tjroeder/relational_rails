@@ -1,7 +1,7 @@
 <nav>
-  <a href="/films">Films Index</a>
-  <a href="/directors">Directors Index</a>
-  <a href="/directors/<%= @director.id %>/films"><%= @director.name %>'s Films Index</a>
+  <%= link_to 'Films Index', '/films' %>
+  <%= link_to 'Directors Index', '/directors' %>
+  <%= link_to "#{@director.name}'s Films Index", "/directors/#{@director.id}/films" %>
 </nav>
 
 <h1><%= @director.name %>'s Films Index</h1>
@@ -10,5 +10,5 @@
   <li>IMDB Ranking: <%= @director.imdb_rank %></li>
   <li>TV Credit: <%= @director.tv_credit %></li>
 </ul>
-<a href="/directors/<%= @director.id %>/edit">Update Director</a>
+<%= button_to 'Update Director', "/directors/#{@director.id}/edit", method: :get %>
 <%= button_to 'Delete Director', "/directors/#{@director.id}", method: :delete %>
