@@ -1,8 +1,7 @@
 class GalleryPiecesController < ApplicationController
+  before_action :set_gallery, only: [:index, :new, :create]
 
   def index
-    @gallery = Gallery.find(params[:gallery_id])
-
     if params[:sort]
       @pieces = @gallery.pieces.order(name: params[:sort])
     elsif params[:filter]
@@ -13,22 +12,22 @@ class GalleryPiecesController < ApplicationController
   end
 
   def new
-    @gallery = Gallery.find(params[:gallery_id])
   end
 
   def create
-    gallery = Gallery.find(params[:gallery_id])
+    piece = @gallery.pieces.create(gallery_pieces_params)
 
-    piece = gallery.pieces.new({
-      name: params[:name],
-      artist: params[:artist],
-      year: params[:year],
-      original: params[:original]
-      })
+    redirect_to "/galleries/#{@gallery.id}/pieces"
+  end
 
-    gallery.save
+  private
 
-    redirect_to "/galleries/#{gallery.id}/pieces"
+  def gallery_pieces_params
+    params.permit(:name, :artist, :year, :original, :gallery_id)
+  end
+
+  def set_gallery
+    @gallery = Gallery.find(params[:gallery_id])
   end
 
 end
