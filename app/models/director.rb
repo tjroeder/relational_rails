@@ -1,5 +1,5 @@
 class Director < ApplicationRecord
-  has_many :films, :dependent => :destroy
+  has_many :films, dependent: :destroy
   
   validates_presence_of :name, :imdb_rank
   validates :tv_credit, inclusion: [true, false]
@@ -10,5 +10,13 @@ class Director < ApplicationRecord
 
   def total_films
     films.size
+  end
+
+  def sort_alphabetically(type)
+    films.order(name: type)
+  end
+
+  def filter_film_rt_rank(number)
+    films.where("rt_rank > ?", number)
   end
 end

@@ -12,7 +12,6 @@ RSpec.describe Director, type: :model do
   describe 'validations' do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:imdb_rank) }
-    # it { should validate_presence_of(:tv_credit) }
   end
 
   describe 'relationships' do
@@ -20,7 +19,7 @@ RSpec.describe Director, type: :model do
   end
 
   describe 'class methods' do
-    describe 'self.desc_order_by_created' do
+    describe '::desc_order_by_created' do
       it 'returns a list of directors order by latest creation' do
         sleep(1)
         director_4 = Director.create!(name: 'Sophia Coppola', imdb_rank: 13, tv_credit: true)
@@ -35,11 +34,35 @@ RSpec.describe Director, type: :model do
   end
 
   describe 'instance methods' do
-    describe 'total_films' do
+    describe '#total_films' do
       it 'returns a count of the all of the directors films' do
         expect(director_1.total_films).to eq(2)
         expect(director_2.total_films).to eq(0)
         expect(director_3.total_films).to eq(1)
+      end
+    end
+
+    describe '#sort_alphabetically' do
+      it 'returns list of directors films sorted alphabetically ascending' do
+        film_4 = director_1.films.create!(name: 'Isle of Dogs', rt_rank: 33, nominated: true)
+        sort = "asc"
+
+        expect(director_1.sort_alphabetically(sort)).to eq([film_1, film_4, film_2])
+      end
+      
+      it 'returns list of directors films sorted alphabetically descending' do
+        film_4 = director_1.films.create!(name: 'Isle of Dogs', rt_rank: 33, nominated: true)
+        sort = "desc"
+        
+        expect(director_1.sort_alphabetically(sort)).to eq([film_2, film_4, film_1])
+      end
+    end
+    
+    describe '#filter_film_rt_rank' do
+      it 'filters films by rt_rank based on user given numeric value' do
+        film_4 = director_1.films.create!(name: 'Isle of Dogs', rt_rank: 33, nominated: true)
+
+        expect(director_1.filter_film_rt_rank(56)).to eq([film_1])
       end
     end
   end

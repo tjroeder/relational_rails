@@ -25,11 +25,7 @@ RSpec.describe '/director/index.html.erb', type: :feature do
         visit '/directors'
 
         expected_1 = "#{director_1.name} - Edit Director - Created at: #{director_1.created_at}"
-        expected_2 = "#{director_2.name} - Edit Director - Created at: #{director_2.created_at}"
-        expected_3 = "#{director_3.name} - Edit Director - Created at: #{director_3.created_at}"
         expect(page).to have_content(expected_1)
-        expect(page).to have_content(expected_2)
-        expect(page).to have_content(expected_3)
       end
 
       it 'displays all directors names ordered by latest created descending' do
