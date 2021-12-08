@@ -1,22 +1,18 @@
 class GalleriesController < ApplicationController
+  before_action :set_gallery, only: [:show, :edit, :update, :delete]
 
   def index
     @galleries = Gallery.order(created_at: :desc)
   end
 
   def show
-    @gallery = Gallery.find(params[:id])
   end
 
   def new
   end
 
   def create
-    gallery = Gallery.new({
-      name: params[:name],
-      entry_cost: params[:entry_cost],
-      non_profit: params[:non_profit]
-      })
+    gallery = Gallery.new(gallery_params)
 
     gallery.save
 
@@ -24,32 +20,32 @@ class GalleriesController < ApplicationController
   end
 
   def edit
-    @gallery = Gallery.find(params[:id])
   end
 
   def update
-    gallery = Gallery.find(params[:id])
-    gallery.update({
-      name: params[:name],
-      entry_cost: params[:entry_cost],
-      non_profit: params[:non_profit]
-      })
-
-    gallery.save
-
-    redirect_to "/galleries/#{gallery.id}"
+    @gallery.update(gallery_params)
+    redirect_to "/galleries/#{@gallery.id}"
   end
 
   def delete
-    gallery = Gallery.find(params[:id])
-    pieces = gallery.pieces.all
+    pieces = @gallery.pieces.all
 
     pieces.each do |piece|
       Piece.destroy(piece.id)
     end
 
-    Gallery.destroy(gallery.id)
+    Gallery.destroy(@gallery.id)
 
     redirect_to "/galleries"
+  end
+
+  private
+
+  def gallery_params
+    params.permit(:name, :entry_cost, :non_profit)
+  end
+
+  def set_gallery
+    @gallery = Gallery.find(params[:id])
   end
 end
