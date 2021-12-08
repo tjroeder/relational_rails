@@ -21,6 +21,14 @@ RSpec.describe 'Add Piece to Gallery Form', type: :feature do
     expect(page).to have_field('original')
   end
 
+  it 'has field headings' do
+    expect(page).to have_content('Name of Piece')
+    expect(page).to have_content('Artist:')
+    expect(page).to have_content('Year Created:')
+    expect(page).to have_content('Is it an Original Piece:')
+    expect(page).to have_content('Original Other')
+  end
+
   it 'updates gallery pieces index when form is submitted' do
     fill_in 'name', with: 'Moaning Lisa'
     fill_in 'artist', with: 'Leonard FlaDinci'

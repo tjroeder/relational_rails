@@ -32,6 +32,14 @@ RSpec.describe 'Art Piece Info Edit Form', type: :feature do
     expect(page).to have_field('original')
   end
 
+  it 'has field headings' do
+    expect(page).to have_content('Name of Piece')
+    expect(page).to have_content('Artist:')
+    expect(page).to have_content('Year Created:')
+    expect(page).to have_content('Is it an Original Piece:')
+    expect(page).to have_content('Original Other')
+  end
+
   it 'updates piece info and redirects to piece show page when form is submitted' do
     fill_in 'name', with: 'Another Art Piece'
     fill_in 'artist', with: 'Another Person'

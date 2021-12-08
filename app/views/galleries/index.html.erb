@@ -17,7 +17,7 @@
 
     <p id="<%= gallery.id %>"> <%= link_to "Edit", "/galleries/#{gallery.id}/edit" %> </p>
 
-    <p id="delete<%= gallery.id %>"> <%= link_to "Delete", "/galleries/#{gallery.id}", method: :delete, data: {confirm: "Really delete the article?"} %></p>
+    <p id="delete<%= gallery.id %>"> <%= link_to "Delete", "/galleries/#{gallery.id}", method: :delete, data: {confirm: "Really delete the gallery?"} %></p>
 
     <p>Created At: <%= gallery.created_at %></p>
   </section>

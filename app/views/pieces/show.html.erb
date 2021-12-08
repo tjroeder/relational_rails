@@ -6,7 +6,7 @@
 <h1> <%= @piece.name %> </h1>
 <%= link_to "Update Art Piece Information", "/pieces/#{@piece.id}/edit" %>
 <br><br>
-<%= button_to "Delete", "/pieces/#{@piece.id}", method: :delete, data: {confirm: "Really delete the article?"} %>
+<%= button_to "Delete", "/pieces/#{@piece.id}", method: :delete, data: {confirm: "Really delete the piece?"} %>
 
 
 <p>Artist: <%= @piece.artist %> </p>
