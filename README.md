@@ -98,7 +98,7 @@ Finally, in order to use the web app you will have to start the server locally a
     
 At this point you should be taken to the welcome page of the web-app. If you encounter any errors or have not reached the web-app please confirm you followed the steps above and that your environment is properly set up.
 
-**Authors** ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+## **Authors** ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -117,17 +117,3 @@ At this point you should be taken to the welcome page of the web-app. If you enc
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification.
 <!--
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
--->
