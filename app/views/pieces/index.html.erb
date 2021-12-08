@@ -10,7 +10,7 @@
   <section style="padding: 10px; border: 2px solid red;">
     <h3> <a href="/pieces/<%= piece.id %>"> <%= piece.name %> </a></h3>
     <p id="<%= piece.id %>"> <%= link_to "Edit", "/pieces/#{piece.id}/edit" %> </p>
-    <p id="delete<%= piece.id %>"> <%= link_to "Delete", "/pieces/#{piece.id}", method: :delete, data: {confirm: "Really delete the article?"} %> </p>
+    <p id="delete<%= piece.id %>"> <%= link_to "Delete", "/pieces/#{piece.id}", method: :delete, data: {confirm: "Really delete the piece?"} %> </p>
     <p> Artist: <%= piece.artist %> </p>
     <p> Year Created: <%= piece.year %> </p>
     <p> Original?:
