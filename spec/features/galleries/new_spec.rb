@@ -15,6 +15,13 @@ RSpec.describe 'New Gallery Form', type: :feature do
     expect(page).to have_field('non_profit')
   end
 
+  it 'has field headings' do
+    expect(page).to have_content('Gallery Name:')
+    expect(page).to have_content('Entry Cost (in USD):')
+    expect(page).to have_content('NPO Status:')
+    expect(page).to have_content('NPO Other')
+  end
+
   it 'updates galleries index when form is submitted' do
     fill_in 'name', with: 'Art Macfarlande'
     fill_in 'entry_cost', with: '3.33'
