@@ -1,10 +1,10 @@
 <nav>
-  <a href="/films">Films Index</a>
-  <a href="/directors">Directors Index</a>
+  <%= link_to 'Films Index', '/films' %>
+  <%= link_to 'Directors Index', '/directors' %>
 </nav>
 
 <h1><%= @film.name %></h1>
-<h2><a href="/films/<%= @film.id %>/edit">Update Film</a></h2>
+<h2><%= link_to 'Update Film', "/films/#{@film.id}/edit" %></h2>
 <ul>
   <li>Rotten Tomatoes Rank: <%= @film.rt_rank %></li>
   <li>Award Nominated Film: <%= @film.nominated %></li>
