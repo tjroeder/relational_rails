@@ -10,7 +10,7 @@
 <section>
   <h2>Galleries:</h2>
 
-<% @galleries.each do |gallery| %>
+<% @galleries.created_at_order_desc.each do |gallery| %>
   <section style="padding: 10px; border: 2px solid red;">
 
     <p> <b><a href="/galleries/<%= gallery.id %>"> <%= gallery.name %></a></b> </p>
