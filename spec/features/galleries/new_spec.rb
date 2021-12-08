@@ -26,9 +26,11 @@ RSpec.describe 'New Gallery Form', type: :feature do
     expect(page).to have_link("Art Macfarlande")
 
     click_link "Art Macfarlande"
-    expect(page).to have_content('NPO Status: Non-Profit')
-    expect("Art Macfarlande").to appear_before("Edit Gallery Info", only_text: true)
 
+    expect(page).to have_content('NPO Status: Non-Profit')
+    expect(page).to have_content("Art Macfarlande")
+
+    expect(page).to have_selector(:link_or_button, 'Edit Gallery Info')
   end
 
   it 'updates galleries index with false boolean value when selected and when form is submitted' do
@@ -44,6 +46,7 @@ RSpec.describe 'New Gallery Form', type: :feature do
     click_link "Art Macfarlande"
 
     expect(page).to have_content('NPO Status: Private')
-    expect("Art Macfarlande").to appear_before("Edit Gallery Info", only_text: true)
+    expect(page).to have_selector(:link_or_button, 'Edit Gallery Info')
+    expect(page).to have_content("Art Macfarlande")
   end
 end

@@ -11,7 +11,7 @@ RSpec.describe 'Gallery Info Edit Form', type: :feature do
     visit "/galleries"
     click_on "Art 4 Us"
 
-    expect(page).to have_content('Edit Gallery Info')
+    expect(page).to have_selector(:link_or_button, 'Edit Gallery Info')
     expect(page).to have_content('Cost of Entry: $4.75')
   end
 
