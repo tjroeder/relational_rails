@@ -45,11 +45,12 @@ In terminal, use `$cd` to navigate to the Relational Rails project directory.
 `$ cd relational_rails`
 
 3. Install required Gems utilizing Bundler: <br>
-In terminal, use Bundler to install any missing Gems. If Bundler is not installed first run the following command.
+In terminal, use Bundler to install any missing Gems.<br> 
+If Bundler is not installed, first run the following command.
 
 `$ gem install bundler`
 
-If Bundler is already installed or after it has been installed, then run the following command.
+If Bundler is already installed or after it has been installed, run the following command.
 
 `$ bundle install`
 
