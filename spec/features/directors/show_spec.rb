@@ -66,6 +66,7 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
 
       it 'displays a link called Directors name films Index' do
         visit "/directors/#{director_1.id}"
+        
         expect(page).to have_link("#{director_1.name}'s Films Index", href: "/directors/#{director_1.id}/films")
 
         visit "/directors/#{director_2.id}"
@@ -75,18 +76,18 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
         expect(page).to have_link("#{director_3.name}'s Films Index", href: "/directors/#{director_3.id}/films")
       end
 
-      it 'displays a link called Update Director' do
+      it 'displays a button called Update Director' do
         visit "/directors/#{director_1.id}"
-        expect(page).to have_link("Update Director", href: "/directors/#{director_1.id}/edit")
+        expect(page).to have_button("Update Director")
 
         visit "/directors/#{director_2.id}"
-        expect(page).to have_link("Update Director", href: "/directors/#{director_2.id}/edit")
+        expect(page).to have_button("Update Director")
 
         visit "/directors/#{director_3.id}"
-        expect(page).to have_link("Update Director", href: "/directors/#{director_3.id}/edit")
+        expect(page).to have_button("Update Director")
       end
 
-      it 'displays a link called Delete Director' do
+      it 'displays a button called Delete Director' do
         visit "/directors/#{director_1.id}"
         expect(page).to have_button("Delete Director")
         
@@ -143,7 +144,7 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
 
       it 'redirects the user to the Directors edit page' do
         visit "/directors/#{director_1.id}"
-        click_link 'Update Director'
+        click_button 'Update Director'
 
         expect(page).to have_current_path("/directors/#{director_1.id}/edit")
       end
