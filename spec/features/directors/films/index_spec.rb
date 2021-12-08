@@ -79,8 +79,6 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
       it 'displays input fields' do
         visit "/directors/#{director_1.id}/films"
 
-        save_and_open_page
-
         expect(page).to have_field('Filter by Rotten Tomatoes Rank:', type: 'number')
       end
     end
