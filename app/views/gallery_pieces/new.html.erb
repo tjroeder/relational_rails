@@ -1,8 +1,7 @@
 <nav>
-  <a href="/pieces">Art Pieces</a>
-  <a href="/galleries">Galleries</a>
+  <%= link_to 'Art Pieces', "/pieces" %>
+  <%= link_to 'Galleries', "/galleries" %>
 </nav><br>
-
 
 <h3>Add New Piece to <%= @gallery.name %>:</h3>
 <%= form_with url: "/galleries/#{@gallery.id}/pieces", method: :post, local: true do |f| %>

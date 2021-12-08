@@ -1,8 +1,8 @@
 <nav>
-  <a href="/pieces">Art Pieces</a>
-  <a href="/galleries">Galleries</a>
-  <a href="/galleries/<%= @gallery.id %>/pieces">Current Exhibition</a>
-</nav>
+  <%= link_to 'Art Pieces', "/pieces" %>
+  <%= link_to 'Galleries', "/galleries" %>
+  <%= link_to 'Current Exhibition', "/galleries/#{@gallery.id}/pieces" %>
+</nav><br>
 
 <h1><%= @gallery.name %></h1>
 
