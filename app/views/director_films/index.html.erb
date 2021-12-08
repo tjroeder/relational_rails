@@ -1,10 +1,10 @@
 <nav>
-  <a href="/films">Films Index</a>
-  <a href="/directors">Directors Index</a>
+  <%= link_to 'Films Index', '/films' %>
+  <%= link_to 'Directors Index', '/directors' %>
 </nav>
 
 <h1><%= @director.name %></h1>
-<h2><a href="/directors/<%= @director.id %>/films/new">Create Film</a></h2>
+<h2><%= link_to 'Create Film', "/directors/#{@director.id}/films/new" %></h2>
 <br>
 <%= link_to 'Sort alphabetical', "/directors/#{@director.id}/films?sort=asc" %>
 <%= form_with url: "/directors/#{@director.id}/films", method: :get, local: true do |f| %>
