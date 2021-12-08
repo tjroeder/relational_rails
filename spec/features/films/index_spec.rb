@@ -48,18 +48,25 @@ RSpec.describe '/films/index.html.erb', type: :feature do
       it 'displays a link called Films Index' do
         visit '/films'
 
-        expect(page).to have_link("Films Index", href: "/films")
+        expect(page).to have_link('Films Index', href: '/films')
       end
 
       it 'displays a link called Directors Index' do
         visit '/films'
 
-        expect(page).to have_link("Directors Index", href: "/directors")
+        expect(page).to have_link('Directors Index', href: '/directors')
       end
 
-      it 'displays a link called Edit Film' do
+      it 'displays a link to Film show page' do
         visit '/films'
 
+        expect(page).to have_link("#{film_3.name}", href: "/films/#{film_3.id}")
+      end
+      
+      it 'displays a link called Edit Film' do
+        visit '/films'
+        
+        save_and_open_page
         expect(page).to have_link("Edit Film", href: "/films/#{film_3.id}/edit")
       end
     end
@@ -79,10 +86,16 @@ RSpec.describe '/films/index.html.erb', type: :feature do
         expect(page).to have_current_path("/directors")
       end
 
-      it 'redirect the user to Edit Film' do
+      it 'redirect the user to the Film show' do
         visit '/films'
         page.find(:css, "##{film_3.id}").click_on
 
+        expect(page).to have_current_path("/films/#{film_3.id}")
+      end
+
+      it 'redirect the user to Edit Film' do
+        visit '/films'
+        page.find(:css, "#edit-#{film_3.id}").click_on
         expect(page).to have_current_path("/films/#{film_3.id}/edit")
       end
     end
