@@ -83,12 +83,12 @@ Use `bundle info [gemname]` to see where a bundled gem is installed.
 ```
 If there are any errors, verify that bundler, Rails, and your ruby environment are correctly setup.
 
-4. Database Migration
+4. Database Migration<br>
 Before using the web application you will need to setup your databases locally by running the following command
 
 `$rails db: {:drop, :create, :migrate, :seed}`
 
-5. Startup and Access
+5. Startup and Access<br>
 Finally, in order to use the web app you will have to start the server locally and access the app through a web browser. 
 - Start server
 `$rails s`
