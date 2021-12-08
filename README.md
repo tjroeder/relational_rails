@@ -31,20 +31,20 @@
 On your local machine open a terminal session and enter the following commands for SSH or HTTPS to clone the repositiory.
 
 
-- using ssh key
+- using ssh key <br>
 `$ git clone git@github.com:tjroeder/relational_rails.git`
 
-- using https
+- using https <br>
 `$ git clone https://github.com/tjroeder/relational_rails.git`
 
 Once cloned, you'll have a new local copy in the directory you ran the clone command in.
 
-2. Change to the project directory:
+2. Change to the project directory:<br>
 In terminal, use `$cd` to navigate to the Relational Rails project directory.
 
 `$ cd relational_rails`
 
-3. Install required Gems utilizing Bundler:
+3. Install required Gems utilizing Bundler: <br>
 In terminal, use Bundler to install any missing Gems. If Bundler is not installed first run the following command.
 
 `$ gem install bundler`
