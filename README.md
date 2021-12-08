@@ -2,11 +2,9 @@
 
 ![languages](https://img.shields.io/github/languages/top/tjroeder/relational_rails?color=red)
 [![Ruby](https://github.com/tjroeder/relational_rails/actions/workflows/tests.yml/badge.svg)](https://github.com/tjroeder/relational_rails/actions/workflows/tests.yml)
-![Rails](https://img.shields.io/badge/rails-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white)
 ![PRs](https://img.shields.io/github/issues-pr-closed/tjroeder/relational_rails)
 ![rspec](https://img.shields.io/gem/v/rspec?color=blue&label=rspec)
-![simplecov](https://img.shields.io/gem/v/simplecov?color=blue&label=simplecov) 
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+![simplecov](https://img.shields.io/gem/v/simplecov?color=blue&label=simplecov) <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/contributors-2-orange.svg?style=flat)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
