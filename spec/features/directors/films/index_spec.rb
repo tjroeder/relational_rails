@@ -75,6 +75,14 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
 
         expect(page).to have_link("Edit Film", href: "/films/#{film_1.id}/edit")
       end
+
+      it 'displays input fields' do
+        visit "/directors/#{director_1.id}/films"
+
+        save_and_open_page
+
+        expect(page).to have_field('Filter by Rotten Tomatoes Rank:', type: 'number')
+      end
     end
 
     describe 'can click links' do
@@ -115,25 +123,38 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
 
       it 'can reload the page with films sorted alphabetically' do
         film_4 = director_1.films.create!(name: 'Darjeeling Limited', rt_rank: 47, nominated: true)
-
+        
         visit "/directors/#{director_1.id}/films"
         expect(film_1.name).to appear_before(film_2.name)
         expect(film_1.name).to appear_before(film_4.name)
         expect(film_2.name).to appear_before(film_4.name)
-
-        click_link 'Sort alphabetical'
         
+        click_link 'Sort alphabetical'
         expect(page).to have_current_path("/directors/#{director_1.id}/films?sort=asc")
         expect(film_1.name).to appear_before(film_4.name)
         expect(film_1.name).to appear_before(film_2.name)
         expect(film_4.name).to appear_before(film_2.name)
       end
-
+      
       it 'redirect the user to edit film' do
         visit "/directors/#{director_1.id}/films"
         page.find(:css, "##{film_1.id}").click_on
-
+        
         expect(page).to have_current_path("/films/#{film_1.id}/edit")
+      end
+      
+      it 'can reload the page with films filtered by user selected rt_rank' do
+        film_4 = director_1.films.create!(name: 'Darjeeling Limited', rt_rank: 47, nominated: true)
+        film_5 = director_1.films.create!(name: 'Moonrise Kingdom', rt_rank: 60, nominated: true)
+        film_6 = director_1.films.create!(name: 'Isle of Dogs', rt_rank: 61, nominated: true)
+
+        visit "/directors/#{director_1.id}/films"
+        fill_in 'filter', with: 60
+        click_button 'Filter'
+
+        expect(page).to have_current_path("/directors/#{director_1.id}/films?utf8=%E2%9C%93&filter=60&commit=Filter")
+        expect(page).to have_content(film_1.name)
+        expect(page).to have_content(film_6.name)
       end
     end
   end
