@@ -1,9 +1,13 @@
 <nav>
-  <a href="/pieces">Art Pieces</a>
-  <a href="/galleries">Galleries</a>
-</nav>
+  <%= link_to 'Art Pieces', "/pieces" %>
+  <%= link_to 'Galleries', "/galleries" %>
+</nav><br>
 
 <h1> <%= @piece.name %> </h1>
+<%= link_to "Update Art Piece Information", "/pieces/#{@piece.id}/edit" %>
+<br><br>
+<%= button_to "Delete", "/pieces/#{@piece.id}", method: :delete, data: {confirm: "Really delete the piece?"} %>
+
 
 <p>Artist: <%= @piece.artist %> </p>
 <p>Year Created: <%= @piece.year %> </p>
@@ -14,6 +18,3 @@
     Reprint
   <% end %>
 </p>
-
-<h2><a href="/pieces/<%= @piece.id %>/edit">Update Art Piece Information</a></h2>
-<%= link_to "Delete", "/pieces/#{@piece.id}", method: :delete, data: {confirm: "Really delete the article?"} %>

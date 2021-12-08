@@ -11,7 +11,7 @@ RSpec.describe 'Gallery Info Edit Form', type: :feature do
     visit "/galleries"
     click_on "Art 4 Us"
 
-    expect(page).to have_content('Edit Gallery Info')
+    expect(page).to have_selector(:link_or_button, 'Edit Gallery Info')
     expect(page).to have_content('Cost of Entry: $4.75')
   end
 
@@ -20,14 +20,22 @@ RSpec.describe 'Gallery Info Edit Form', type: :feature do
   end
 
   it 'has fields for editing data' do
-    expect(page).to have_field('gallery[name]', with: "#{@gallery_1.name}")
-    expect(page).to have_field('gallery[entry_cost]', with: "4.75")
-    expect(page).to have_field('gallery[non_profit]')
+    expect(page).to have_field('name', with: "#{@gallery_1.name}")
+    expect(page).to have_field('entry_cost', with: "4.75")
+    expect(page).to have_field('non_profit')
+  end
+
+  it 'has field headings' do
+    expect(page).to have_content('Gallery Name:')
+    expect(page).to have_content('Entry Cost (in USD):')
+    expect(page).to have_content('NPO Status:')
+    expect(page).to have_content('NPO Other')
   end
 
   it 'updates gallery and redirects to show page when form is submitted' do
-    fill_in 'gallery[name]', with: 'Art Macfarlande'
-    fill_in 'gallery[entry_cost]', with: '3.33'
+    fill_in 'name', with: 'Art Macfarlande'
+    fill_in 'entry_cost', with: '3.33'
+    choose('npotrue')
     click_on "Submit"
 
     expect(page).to have_current_path("/galleries/#{@gallery_1.id}")

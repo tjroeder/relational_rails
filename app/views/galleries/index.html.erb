@@ -1,7 +1,7 @@
 <nav>
-  <a href="/pieces">Art Pieces</a>
-  <a href="/galleries">Galleries</a>
-</nav>
+  <%= link_to 'Art Pieces', "/pieces" %>
+  <%= link_to 'Galleries', "/galleries" %>
+</nav><br>
 
 <h1>Galleries Index</h1>
 
@@ -10,13 +10,17 @@
 <section>
   <h2>Galleries:</h2>
 
-  <% @galleries.each do |gallery| %>
-    <section style="padding: 10px; border: 2px solid red;">
-      <p> <b><a href="/galleries/<%= gallery.id %>"> <%= gallery.name %></a></b> </p>
-      <p id="<%= gallery.id %>"> <%= link_to "Edit", "/galleries/#{gallery.id}/edit" %> </p>
-      <p id="delete<%= gallery.id %>"> <%= link_to "Delete", "/galleries/#{gallery.id}", method: :delete, data: {confirm: "Really delete the article?"} %></p>
-      <p>Created At: <%= gallery.created_at %></p>
-    </section>
+<% @galleries.each do |gallery| %>
+  <section style="padding: 10px; border: 2px solid red;">
+
+    <p> <b><a href="/galleries/<%= gallery.id %>"> <%= gallery.name %></a></b> </p>
+
+    <p id="<%= gallery.id %>"> <%= link_to "Edit", "/galleries/#{gallery.id}/edit" %> </p>
+
+    <p id="delete<%= gallery.id %>"> <%= link_to "Delete", "/galleries/#{gallery.id}", method: :delete, data: {confirm: "Really delete the gallery?"} %></p>
+
+    <p>Created At: <%= gallery.created_at %></p>
+  </section>
 
   <% end %>
 </section>

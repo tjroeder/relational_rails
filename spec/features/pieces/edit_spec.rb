@@ -26,17 +26,25 @@ RSpec.describe 'Art Piece Info Edit Form', type: :feature do
   end
 
   it 'has fields for editing data' do
-    expect(page).to have_field('piece[name]', with: "#{@piece_1.name}")
-    expect(page).to have_field('piece[artist]', with: "#{@piece_1.artist}")
-    expect(page).to have_field('piece[year]', with: "#{@piece_1.year}")
-    expect(page).to have_field('piece[original]')
+    expect(page).to have_field('name', with: "#{@piece_1.name}")
+    expect(page).to have_field('artist', with: "#{@piece_1.artist}")
+    expect(page).to have_field('year', with: "#{@piece_1.year}")
+    expect(page).to have_field('original')
+  end
+
+  it 'has field headings' do
+    expect(page).to have_content('Name of Piece')
+    expect(page).to have_content('Artist:')
+    expect(page).to have_content('Year Created:')
+    expect(page).to have_content('Is it an Original Piece:')
+    expect(page).to have_content('Original Other')
   end
 
   it 'updates piece info and redirects to piece show page when form is submitted' do
-    fill_in 'piece[name]', with: 'Another Art Piece'
-    fill_in 'piece[artist]', with: 'Another Person'
-    fill_in 'piece[year]', with: '2021'
-    choose('piece[original]', option: "true")
+    fill_in 'name', with: 'Another Art Piece'
+    fill_in 'artist', with: 'Another Person'
+    fill_in 'year', with: '2021'
+    choose('original', option: "true")
     click_on "Submit"
 
     expect(page).to have_current_path("/pieces/#{@piece_1.id}")
@@ -47,10 +55,10 @@ RSpec.describe 'Art Piece Info Edit Form', type: :feature do
   end
 
   it 'updates piece info and redirects to piece show page when form is submitted with false boolean value' do
-    fill_in 'piece[name]', with: 'Another Art Piece'
-    fill_in 'piece[artist]', with: 'Another Person'
-    fill_in 'piece[year]', with: '2021'
-    choose('piece[original]', option: "false")
+    fill_in 'name', with: 'Another Art Piece'
+    fill_in 'artist', with: 'Another Person'
+    fill_in 'year', with: '2021'
+    choose('original', option: "false")
     click_on "Submit"
 
     expect(page).to have_current_path("/pieces/#{@piece_1.id}")
