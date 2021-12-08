@@ -10,14 +10,15 @@ RSpec.describe 'New Gallery Form', type: :feature do
   end
 
   it 'has fields for inputting data' do
-    expect(page).to have_field('gallery[name]')
-    expect(page).to have_field('gallery[entry_cost]')
-    expect(page).to have_field('gallery[non_profit]')
+    expect(page).to have_field('name')
+    expect(page).to have_field('entry_cost')
+    expect(page).to have_field('non_profit')
   end
 
   it 'updates galleries index when form is submitted' do
-    fill_in 'gallery[name]', with: 'Art Macfarlande'
-    fill_in 'gallery[entry_cost]', with: '3.33'
+    fill_in 'name', with: 'Art Macfarlande'
+    fill_in 'entry_cost', with: '3.33'
+    choose('npotrue')
     click_on "Submit"
 
     expect(page).to have_current_path("/galleries")
@@ -31,9 +32,9 @@ RSpec.describe 'New Gallery Form', type: :feature do
   end
 
   it 'updates galleries index with false boolean value when selected and when form is submitted' do
-    fill_in 'gallery[name]', with: 'Art Macfarlande'
-    fill_in 'gallery[entry_cost]', with: '3.33'
-    choose('gallery[non_profit]', option: "false")
+    fill_in 'name', with: 'Art Macfarlande'
+    fill_in 'entry_cost', with: '3.33'
+    choose('non_profit', option: "false")
     click_on "Submit"
 
     expect(page).to have_current_path("/galleries")
