@@ -8,7 +8,7 @@ RSpec.describe 'Gallery pieces index' do
     @piece_1 = @gallery_1.pieces.create!(name: "Starry Night", artist: "Vincent Van Gogh", year: 1889, original: false)
     @piece_2 = @gallery_1.pieces.create!(name: "Self Portrait", artist: "Vincent Van Gogh", year: 1889, original: true)
     @piece_3 = @gallery_2.pieces.create!(name: "Girl with the Pearl Earring", artist: "Johannes Vermeer", year: 1665, original: false)
-    @piece_4 = @gallery_1.pieces.create!(name: "Mona Lisa", artist: "Leonardo DaVinci", year: 1665, original: true, gallery_id: @gallery_2.id)
+    @piece_4 = @gallery_1.pieces.create!(name: "Mona Lisa", artist: "Leonardo DaVinci", year: 1665, original: true)
 
     visit "/galleries/#{@gallery_1.id}/pieces"
   end
@@ -94,6 +94,28 @@ RSpec.describe 'Gallery pieces index' do
       page.find(:css, "##{@piece_2.id}").click_on
 
       expect(current_path).to eq("/pieces/#{@piece_2.id}/edit")
+    end
+  end
+
+  describe 'filter form on gallery pieces index' do
+    it 'has a form' do
+      expect(page).to have_content("Pieces created after year:")
+      expect(page).to have_button("Filter")
+    end
+
+    it 'submits a number and alters page content' do
+      expect(page).to have_current_path("/galleries/#{@gallery_1.id}/pieces")
+
+      expect(page).to have_content(@piece_1.name)
+      expect(page).to have_content(@piece_2.name)
+      expect(page).to have_content(@piece_4.name)
+
+      fill_in 'filter', with: "1700"
+      click_on "Filter"
+
+      expect(page).to have_content(@piece_1.name)
+      expect(page).to have_content(@piece_2.name)
+
     end
   end
 end

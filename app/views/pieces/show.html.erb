@@ -16,3 +16,4 @@
 </p>
 
 <h2><a href="/pieces/<%= @piece.id %>/edit">Update Art Piece Information</a></h2>
+<%= link_to "Delete", "/pieces/#{@piece.id}", method: :delete, data: {confirm: "Really delete the article?"} %>

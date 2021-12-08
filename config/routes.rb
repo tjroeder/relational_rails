@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/directors', to: 'directors#index'
   get '/directors/new', to: 'directors#new'
   get '/directors/:id', to: 'directors#show'
@@ -9,11 +8,13 @@ Rails.application.routes.draw do
   post '/directors', to: 'directors#create'
   post '/directors/:director_id/films', to: 'director_films#create'
   patch '/directors/:id', to: 'directors#update'
+  delete '/directors/:id', to: 'directors#destroy'
 
   get '/films', to: 'films#index'
   get '/films/:id', to: 'films#show'
   get '/films/:id/edit', to: 'films#edit'
   patch '/films/:id', to: 'films#update'
+  delete '/films/:id', to: 'films#destroy'
 
   get '/galleries', to: 'galleries#index'
   get '/galleries/new', to: 'galleries#new'
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   get '/galleries/:id/edit', to:'galleries#edit'
   post '/galleries', to: 'galleries#create'
   patch '/galleries/:id', to: 'galleries#update'
+  delete 'galleries/:id', to: 'galleries#delete'
 
   get '/galleries/:gallery_id/pieces', to: 'gallery_pieces#index'
   get 'galleries/:gallery_id/pieces/new', to: 'gallery_pieces#new'
@@ -30,4 +32,5 @@ Rails.application.routes.draw do
   get '/pieces/:id', to: 'pieces#show'
   get '/pieces/:id/edit', to: 'pieces#edit'
   patch '/pieces/:id', to: 'pieces#update'
+  delete '/pieces/:id', to: 'pieces#delete'
 end
