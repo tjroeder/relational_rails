@@ -107,11 +107,11 @@ RSpec.describe PiecesController, type: :feature do
       visit "/pieces/#{@piece_1.id}"
     end
     it 'has a link to route a delete request' do
-      expect(page).to have_link("Delete", href: "/pieces/#{@piece_1.id}")
+      expect(page).to have_selector(:link_or_button, "Delete")
     end
 
     it 'deletes the piece from the database and redirects to pieces index' do
-      click_link "Delete"
+      click_button "Delete"
 
       expect(current_path).to eq("/pieces")
 
@@ -124,7 +124,7 @@ RSpec.describe PiecesController, type: :feature do
 
       expect(current_path).to eq("/pieces/#{@piece_2.id}")
 
-      click_link "Delete"
+      click_button "Delete"
 
       expect(current_path).to eq("/pieces")
 
