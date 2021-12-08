@@ -46,7 +46,7 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
       it 'displays a link called Directors name films Index' do
         visit "/directors/#{director_1.id}"
         
-        expect(page).to have_link("#{director_1.name}'s Films Index", href: "/directors/#{director_1.id}/films")
+        expect(page).to have_link("Film History", href: "/directors/#{director_1.id}/films")
       end
 
       it 'displays a button called Update Director' do
@@ -58,7 +58,7 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
       it 'displays a button called Delete Director' do
         visit "/directors/#{director_1.id}"
 
-        expect(page).to have_button("Delete Director")
+        expect(page).to have_button("Delete Director", wait: "Really delete the Director?")
       end
     end
 
@@ -79,7 +79,7 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
 
       it 'redirects the user to the Directors name films index' do
         visit "/directors/#{director_1.id}"
-        click_link "#{director_1.name}'s Films Index"
+        click_link "Film History"
         
         expect(page).to have_current_path("/directors/#{director_1.id}/films")
       end
@@ -106,7 +106,7 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
         click_button 'Delete Director'
 
         expect(page).to have_no_content(director_3.name)
-        expect(page).to have_no_content(director_3.imdb_rank)
+        expect(page).to have_no_content("IMDB Ranking: #{director_3.imdb_rank}")
         
         visit "/films"
         expect(page).to have_content(film_5.name)

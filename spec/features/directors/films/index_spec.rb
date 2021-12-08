@@ -112,7 +112,7 @@ RSpec.describe '/director_films/index.html.erb', type: :feature do
       
       it 'redirect the user to edit film' do
         visit "/directors/#{director_1.id}/films"
-        page.find(:css, "##{film_1.id}").click_on
+        page.find(:css, "#edit-#{film_1.id}").click_on
         
         expect(page).to have_current_path("/films/#{film_1.id}/edit")
       end

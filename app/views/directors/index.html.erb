@@ -4,10 +4,17 @@
 </nav>
 
 <h1>Directors Index</h1>
+
 <h2><%= link_to 'Add New Director', '/directors/new' %></h2>
-<br>
-<% @directors.desc_order_by_created.each do |director| %>
-  <p id="<%= director.id %>"><%= director.name %> -
-  <%= link_to 'Edit Director', "/directors/#{director.id}/edit" %> -
-  Created at: <%= director.created_at %></p>
-<% end %>
+
+<section>
+  <h2>Directors:</h2>
+  
+  <% @directors.desc_order_by_created.each do |director| %>
+    <section style="padding: 10px; border: 2px solid red;">
+      <p><b><%= link_to director.name, "/directors/#{director.id}" %><b></p>
+      <p id="edit-<%= director.id %>"><%= link_to 'Edit Director', "/directors/#{director.id}/edit" %></p>
+      <p>Created at: <%= director.created_at %></p>
+    </section>
+  <% end %>
+</section>

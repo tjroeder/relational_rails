@@ -1,7 +1,7 @@
 <nav>
-  <a href="/pieces">Art Pieces</a>
-  <a href="/galleries">Galleries</a>
-</nav>
+  <%= link_to 'Art Pieces', "/pieces" %>
+  <%= link_to 'Galleries', "/galleries" %>
+</nav><br>
 
 <h1><%= @gallery.name %></h1>
 <%= link_to 'Sort Alphabetically', "/galleries/#{@gallery.id}/pieces?sort=asc" %><br><br>
@@ -32,4 +32,4 @@
 
 <% end %>
 
-<h2><a href="/galleries/<%= @gallery.id %>/pieces/new">Add New Piece</a></h2>
+<h2><%= link_to 'Add New Piece', "/galleries/#{@gallery.id}/pieces/new" %></h2>

@@ -4,9 +4,10 @@
 </nav>
 
 <h1><%= @film.name %></h1>
-<h2><%= link_to 'Update Film', "/films/#{@film.id}/edit" %></h2>
-<ul>
-  <li>Rotten Tomatoes Rank: <%= @film.rt_rank %></li>
-  <li>Award Nominated Film: <%= @film.nominated %></li>
-<ul>
-<%= button_to 'Delete Film', "/films/#{@film.id}", method: :delete %>
+<%= link_to 'Update Film', "/films/#{@film.id}/edit" %>
+<br>
+<br>
+<%= button_to 'Delete Film', "/films/#{@film.id}", method: :delete, data: {confirm: "Really delete the Film?"} %>
+
+<p>Rotten Tomatoes Rank: <%= @film.rt_rank %></p>
+<p>Award Nominated Film: <%= @film.nominated %></p>

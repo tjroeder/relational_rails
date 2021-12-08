@@ -87,11 +87,13 @@ RSpec.describe GalleriesController, type: :feature do
     end
 
     it 'has link to edit gallery info page' do
-      expect(page).to have_link("Edit Gallery Info", :href=>"/galleries/#{@gallery_1.id}/edit")
+      expect(page).to have_selector(:link_or_button, "Edit Gallery Info")
+      click_button "Edit Gallery Info"
+      expect(current_path).to eq("/galleries/#{@gallery_1.id}/edit")
     end
 
     it 'takes you to edit gallery info form when you click it' do
-      click_link 'Edit Gallery Info'
+      click_button 'Edit Gallery Info'
       expect(page).to have_current_path("/galleries/#{@gallery_1.id}/edit")
       expect(page).to have_content('Update Gallery Information')
     end
@@ -103,14 +105,15 @@ RSpec.describe GalleriesController, type: :feature do
     end
 
     it 'is a link on the galleries show page' do
-      expect(page).to have_link("Delete", href: "/galleries/#{@gallery_1.id}")
+      expect(page).to have_selector(:link_or_button, "Delete")
+      expect(page).to have_button("Delete", wait: "Really delete the gallery?")
     end
 
     it 'removes galleries and children when clicked' do
       expect(page).to have_content("#{@gallery_1.name}")
       expect(page).to have_content("Number of Pieces: 2")
 
-      click_link "Delete"
+      click_button "Delete"
 
       expect(current_path).to eq("/galleries")
 

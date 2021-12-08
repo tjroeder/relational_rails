@@ -1,14 +1,17 @@
 <nav>
   <%= link_to 'Films Index', '/films' %>
   <%= link_to 'Directors Index', '/directors' %>
-  <%= link_to "#{@director.name}'s Films Index", "/directors/#{@director.id}/films" %>
+  <%= link_to "Film History", "/directors/#{@director.id}/films" %>
 </nav>
+<br>
 
 <h1><%= @director.name %>'s Films Index</h1>
+<%= button_to 'Update Director', "/directors/#{@director.id}/edit", method: :get %>
+<br>
+<%= button_to 'Delete Director', "/directors/#{@director.id}", method: :delete, data: {confirm: "Really delete the Director?"} %>
+
 <ul>
   <li>Total Number of Films: <%= @director.total_films %></li>
   <li>IMDB Ranking: <%= @director.imdb_rank %></li>
   <li>TV Credit: <%= @director.tv_credit %></li>
 </ul>
-<%= button_to 'Update Director', "/directors/#{@director.id}/edit", method: :get %>
-<%= button_to 'Delete Director', "/directors/#{@director.id}", method: :delete %>

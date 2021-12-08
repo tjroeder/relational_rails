@@ -4,11 +4,12 @@
 </nav>
 
 <h1>Films Index</h1>
+
 <% @films.nominated_only.each do |film| %>
-  <h3 id="<%= film.id %>"><%= film.name %> - <%= link_to 'Edit Film', "/films/#{film.id}/edit" %></h3>
-  <ul>
-    <li>Rotten Tomatoes Ranking: <%= film.rt_rank %></li>
-    <li>Award Nominated Film: <%= film.nominated %></li>
-  </ul>
-  <br>
+  <section style="padding; 10px; border: 2px solid red;">
+    <h3 id="<%= film.id %>"><%= link_to film.name, "/films/#{film.id}" %></h3>
+    <p id="edit-<%= film.id %>"><%= link_to 'Edit Film', "/films/#{film.id}/edit" %>
+    <p>Rotten Tomatoes Ranking: <%= film.rt_rank %></p>
+    <p>Award Nominated Film: <%= film.nominated %></p>
+  </section>
 <% end %>
