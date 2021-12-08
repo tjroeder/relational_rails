@@ -46,7 +46,7 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
       it 'displays a link called Directors name films Index' do
         visit "/directors/#{director_1.id}"
         
-        expect(page).to have_link("#{director_1.name}'s Films Index", href: "/directors/#{director_1.id}/films")
+        expect(page).to have_link("Film History", href: "/directors/#{director_1.id}/films")
       end
 
       it 'displays a button called Update Director' do
@@ -79,7 +79,7 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
 
       it 'redirects the user to the Directors name films index' do
         visit "/directors/#{director_1.id}"
-        click_link "#{director_1.name}'s Films Index"
+        click_link "Film History"
         
         expect(page).to have_current_path("/directors/#{director_1.id}/films")
       end
