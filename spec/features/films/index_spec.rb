@@ -66,7 +66,6 @@ RSpec.describe '/films/index.html.erb', type: :feature do
       it 'displays a link called Edit Film' do
         visit '/films'
         
-        save_and_open_page
         expect(page).to have_link("Edit Film", href: "/films/#{film_3.id}/edit")
       end
     end
