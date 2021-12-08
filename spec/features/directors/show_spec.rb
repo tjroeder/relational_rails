@@ -23,44 +23,23 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
         expect(page).to have_content(director_1.name)
         expect(page).to have_content(director_1.imdb_rank)
         expect(page).to have_content(director_1.tv_credit)
-        
-        visit "/directors/#{director_2.id}"
-
-        expect(page).to have_content(director_2.name)
-        expect(page).to have_content(director_2.imdb_rank)
-        expect(page).to have_content(director_2.tv_credit)
       end
 
       it 'displays the count of the directors films' do
         visit "/directors/#{director_1.id}"
-        expect(page).to have_content(director_1.films.size)
-        
-        visit "/directors/#{director_2.id}"
-        expect(page).to have_content(director_2.films.size)
 
-        visit "/directors/#{director_3.id}"
-        expect(page).to have_content(director_3.films.size)
+        expect(page).to have_content(director_1.films.size)
       end
       
       it 'displays a link called Films Index' do
         visit "/directors/#{director_1.id}"
-        expect(page).to have_link("Films Index", href: "/films")
 
-        visit "/directors/#{director_2.id}"
-        expect(page).to have_link("Films Index", href: "/films")
-        
-        visit "/directors/#{director_3.id}"
         expect(page).to have_link("Films Index", href: "/films")
       end
 
       it 'displays a link called Directors Index' do
         visit "/directors/#{director_1.id}"
-        expect(page).to have_link("Directors Index", href: "/directors")
 
-        visit "/directors/#{director_2.id}"
-        expect(page).to have_link("Directors Index", href: "/directors")
-        
-        visit "/directors/#{director_3.id}"
         expect(page).to have_link("Directors Index", href: "/directors")
       end
 
@@ -68,33 +47,17 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
         visit "/directors/#{director_1.id}"
         
         expect(page).to have_link("#{director_1.name}'s Films Index", href: "/directors/#{director_1.id}/films")
-
-        visit "/directors/#{director_2.id}"
-        expect(page).to have_link("#{director_2.name}'s Films Index", href: "/directors/#{director_2.id}/films")
-        
-        visit "/directors/#{director_3.id}"
-        expect(page).to have_link("#{director_3.name}'s Films Index", href: "/directors/#{director_3.id}/films")
       end
 
       it 'displays a button called Update Director' do
         visit "/directors/#{director_1.id}"
-        expect(page).to have_button("Update Director")
 
-        visit "/directors/#{director_2.id}"
-        expect(page).to have_button("Update Director")
-
-        visit "/directors/#{director_3.id}"
         expect(page).to have_button("Update Director")
       end
 
       it 'displays a button called Delete Director' do
         visit "/directors/#{director_1.id}"
-        expect(page).to have_button("Delete Director")
-        
-        visit "/directors/#{director_2.id}"
-        expect(page).to have_button("Delete Director")
 
-        visit "/directors/#{director_3.id}"
         expect(page).to have_button("Delete Director")
       end
     end
@@ -103,43 +66,22 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
       it 'redirects the user to the Films index' do
         visit "/directors/#{director_1.id}"
         click_link 'Films Index'
-        expect(page).to have_current_path("/films")
 
-        visit "/directors/#{director_2.id}"
-        click_link 'Films Index'
-        expect(page).to have_current_path("/films")
-        
-        visit "/directors/#{director_3.id}"
-        click_link 'Films Index'
         expect(page).to have_current_path("/films")
       end
 
       it 'redirects the user to the Directors index' do
         visit "/directors/#{director_1.id}"
         click_link 'Directors Index'
-        expect(page).to have_current_path("/directors")
 
-        visit "/directors/#{director_2.id}"
-        click_link 'Directors Index'
-        expect(page).to have_current_path("/directors")
-        
-        visit "/directors/#{director_3.id}"
-        click_link 'Directors Index'
         expect(page).to have_current_path("/directors")
       end
 
       it 'redirects the user to the Directors name films index' do
         visit "/directors/#{director_1.id}"
         click_link "#{director_1.name}'s Films Index"
-        expect(page).to have_current_path("/directors/#{director_1.id}/films")
-
-        visit "/directors/#{director_2.id}"
-        click_link "#{director_2.name}'s Films Index"
-        expect(page).to have_current_path("/directors/#{director_2.id}/films")
         
-        visit "/directors/#{director_3.id}"
-        click_link "#{director_3.name}'s Films Index"
-        expect(page).to have_current_path("/directors/#{director_3.id}/films")
+        expect(page).to have_current_path("/directors/#{director_1.id}/films")
       end
 
       it 'redirects the user to the Directors edit page' do
