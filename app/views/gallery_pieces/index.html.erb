@@ -32,4 +32,4 @@
 
 <% end %>
 
-<h2><a href="/galleries/<%= @gallery.id %>/pieces/new">Add New Piece</a></h2>
+<h2><%= link_to 'Add New Piece', "/galleries/#{@gallery.id}/pieces/new" %></h2>

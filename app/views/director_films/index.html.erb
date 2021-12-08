@@ -4,19 +4,30 @@
 </nav>
 
 <h1><%= @director.name %></h1>
-<h2><%= link_to 'Create Film', "/directors/#{@director.id}/films/new" %></h2>
-<br>
 <%= link_to 'Sort alphabetical', "/directors/#{@director.id}/films?sort=asc" %>
+<br>
+<br>
 <%= form_with url: "/directors/#{@director.id}/films", method: :get, local: true do |f| %>
   <%= f.label :filter, "Filter by Rotten Tomatoes Rank:" %>
   <%= f.number_field :filter, in: 1..100, step: 1 %>
   <%= f.submit 'Filter' %>
 <% end %>
 <br>
+
 <% @films.each do |film| %>
-  <h3 id="<%= film.id %>"><%= film.name %> - <%= link_to 'Edit Film', "/films/#{film.id}/edit" %></h3>
-  <ul>
-    <li>Rotten Tomatoes Rank: <%= film.rt_rank %></li>
-    <li>Award Nominated Film: <%= film.nominated %></li>
-  </ul>
+  <section style="padding: 10px; border: 2px solid red;">
+    <h3><%= film.name %></h3>
+
+    <p id="edit-<%= film.id %>">
+    <%= link_to 'Edit Film', "/films/#{film.id}/edit" %>
+    </p>
+
+    <ul>
+      <li>Rotten Tomatoes Rank: <%= film.rt_rank %></li>
+      <li>Award Nominated Film: <%= film.nominated %></li>
+    </ul>
+
+  </section>
 <% end %>
+
+<h2><%= link_to 'Create Film', "/directors/#{@director.id}/films/new" %></h2>
