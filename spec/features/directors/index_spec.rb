@@ -10,7 +10,7 @@ RSpec.describe '/director/index.html.erb', type: :feature do
       it 'should visit the page at /directors' do
         visit '/directors'
 
-        expect(page).to have_current_path("/directors")
+        expect(page).to have_current_path('/directors')
       end
 
       it 'displays all the directors names' do
@@ -23,13 +23,8 @@ RSpec.describe '/director/index.html.erb', type: :feature do
 
       it 'displays all directors names and the created time of the entry' do
         visit '/directors'
-
-        expected_1 = "#{director_1.name} - Edit Director - Created at: #{director_1.created_at}"
-        expected_2 = "#{director_2.name} - Edit Director - Created at: #{director_2.created_at}"
-        expected_3 = "#{director_3.name} - Edit Director - Created at: #{director_3.created_at}"
-        expect(page).to have_content(expected_1)
-        expect(page).to have_content(expected_2)
-        expect(page).to have_content(expected_3)
+        
+        expect(page).to have_content("Created at: #{director_1.created_at}")
       end
 
       it 'displays all directors names ordered by latest created descending' do
@@ -45,19 +40,25 @@ RSpec.describe '/director/index.html.erb', type: :feature do
       it 'displays a link called Films Index' do
         visit '/directors'
 
-        expect(page).to have_link("Films Index", href: "/films")
+        expect(page).to have_link('Films Index', href: '/films')
       end
 
       it 'displays a link called Directors Index' do
         visit '/directors'
 
-        expect(page).to have_link("Directors Index", href: "/directors")
+        expect(page).to have_link('Directors Index', href: '/directors')
       end
       
       it 'displays a link called New Director' do
         visit '/directors'
 
-        expect(page).to have_link("New Director", href: "/directors/new")
+        expect(page).to have_link('New Director', href: '/directors/new')
+      end
+
+      it 'displays a link to individual Directors' do
+        visit '/directors'
+
+        expect(page).to have_link("#{director_1.name}", href: "/directors/#{director_1.id}")
       end
 
       it 'displays a link called Edit Director' do
@@ -72,26 +73,33 @@ RSpec.describe '/director/index.html.erb', type: :feature do
         visit '/directors'
         click_link 'Films Index'
         
-        expect(page).to have_current_path("/films")
+        expect(page).to have_current_path('/films')
       end
 
       it 'redirect the user to the directors index' do
         visit '/directors'
         click_link 'Directors Index'
         
-        expect(page).to have_current_path("/directors")
+        expect(page).to have_current_path('/directors')
       end
 
       it 'redirect the user to the new director form' do
         visit '/directors'
         click_link 'New Director'
         
-        expect(page).to have_current_path("/directors/new")
+        expect(page).to have_current_path('/directors/new')
+      end
+
+      it 'redirect the user the individual director page' do
+        visit '/directors'
+        click_link "#{director_1.name}"
+
+        expect(page).to have_current_path("/directors/#{director_1.id}")
       end
 
       it 'redirect the user to Edit Director form' do
         visit '/directors'
-        page.find(:css, "##{director_1.id}").click_on
+        page.find(:css, "#edit-#{director_1.id}").click_on
         
         expect(page).to have_current_path("/directors/#{director_1.id}/edit")
       end

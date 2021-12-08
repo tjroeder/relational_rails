@@ -8,9 +8,15 @@ RSpec.describe Piece, type: :model do
 
   it {should belong_to :gallery}
 
-  describe '#original_only' do
+  describe '::original_only' do
     it 'only displays pieces with tru value for :original' do
       expect(Piece.original_only).to eq([piece_1, piece_2])
+    end
+  end
+
+  describe '::created_after' do
+    it 'filters pieces based on year created' do
+      expect(Piece.created_after(1700)).to eq([piece_1, piece_2])
     end
   end
 end

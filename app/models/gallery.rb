@@ -6,4 +6,8 @@ class Gallery < ApplicationRecord
   def total_pieces
     pieces.size
   end
+
+  def self.created_at_order_desc
+    Gallery.order(created_at: :desc)
+  end
 end

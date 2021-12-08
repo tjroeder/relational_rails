@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  get '/', to: 'welcome#index'
+
   get '/directors', to: 'directors#index'
   get '/directors/new', to: 'directors#new'
   get '/directors/:id', to: 'directors#show'
@@ -9,11 +11,13 @@ Rails.application.routes.draw do
   post '/directors', to: 'directors#create'
   post '/directors/:director_id/films', to: 'director_films#create'
   patch '/directors/:id', to: 'directors#update'
+  delete '/directors/:id', to: 'directors#destroy'
 
   get '/films', to: 'films#index'
   get '/films/:id', to: 'films#show'
   get '/films/:id/edit', to: 'films#edit'
   patch '/films/:id', to: 'films#update'
+  delete '/films/:id', to: 'films#destroy'
 
   get '/galleries', to: 'galleries#index'
   get '/galleries/new', to: 'galleries#new'
