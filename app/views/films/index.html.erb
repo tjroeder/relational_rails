@@ -8,7 +8,7 @@
 <% @films.nominated_only.each do |film| %>
   <section style="padding; 10px; border: 2px solid red;">
     <h3 id="<%= film.id %>"><%= link_to film.name, "/films/#{film.id}" %></h3>
-    <p id="edit-<%= film.id %>"><%= link_to 'Edit Film', "/films/#{film.id}/edit" %><>
+    <p id="edit-<%= film.id %>"><%= link_to 'Edit Film', "/films/#{film.id}/edit" %>
     <p>Rotten Tomatoes Ranking: <%= film.rt_rank %></p>
     <p>Award Nominated Film: <%= film.nominated %></p>
   </section>
