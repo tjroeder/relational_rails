@@ -4,9 +4,9 @@ class DirectorFilmsController < ApplicationController
 
   def index
     if params[:sort]
-      @films = @films.order(name: params[:sort])
+      @films = @director.sort_alphabetically(params[:sort])
     elsif params[:filter]
-      @films = @films.where("rt_rank > ?", params[:filter])
+      @films = @director.filter_film_rt_rank(params[:filter])
     end
   end
 

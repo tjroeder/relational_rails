@@ -1,10 +1,10 @@
 <nav>
-  <a href="/films">Films Index</a>
-  <a href="/directors">Directors Index</a>
+  <%= link_to 'Films Index', '/films' %>
+  <%= link_to 'Directors Index', '/directors' %>
 </nav>
 
 <h1>Directors Index</h1>
-<h2><a href="/directors/new">Add New Director</a></h2>
+<h2><%= link_to 'Add New Director', '/directors/new' %></h2>
 <br>
 <% @directors.desc_order_by_created.each do |director| %>
   <p id="<%= director.id %>"><%= director.name %> -
