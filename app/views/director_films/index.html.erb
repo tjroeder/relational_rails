@@ -7,6 +7,12 @@
 <h2><a href="/directors/<%= @director.id %>/films/new">Create Film</a></h2>
 <br>
 <%= link_to 'Sort alphabetical', "/directors/#{@director.id}/films?sort=asc" %>
+<%= form_with url: "/directors/#{@director.id}/films", method: :get, local: true do |f| %>
+  <%= f.label :filter, "Filter by Rotten Tomatoes Rank:" %>
+  <%= f.number_field :filter, in: 1..100, step: 1 %>
+  <%= f.submit 'Filter' %>
+<% end %>
+<br>
 <% @films.each do |film| %>
   <h3 id="<%= film.id %>"><%= film.name %> - <%= link_to 'Edit Film', "/films/#{film.id}/edit" %></h3>
   <ul>
