@@ -106,7 +106,7 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
         click_button 'Delete Director'
 
         expect(page).to have_no_content(director_3.name)
-        expect(page).to have_no_content(director_3.imdb_rank)
+        expect(page).to have_no_content("IMDB Ranking: #{director_3.imdb_rank}")
         
         visit "/films"
         expect(page).to have_content(film_5.name)
