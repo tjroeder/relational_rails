@@ -12,9 +12,7 @@ class GalleriesController < ApplicationController
   end
 
   def create
-    gallery = Gallery.new(gallery_params)
-
-    gallery.save
+    gallery = Gallery.create(gallery_params)
 
     redirect_to '/galleries'
   end
