@@ -58,7 +58,7 @@ RSpec.describe '/directors/show.html.erb', type: :feature do
       it 'displays a button called Delete Director' do
         visit "/directors/#{director_1.id}"
 
-        expect(page).to have_button("Delete Director")
+        expect(page).to have_button("Delete Director", wait: "Really delete the Director?")
       end
     end
 

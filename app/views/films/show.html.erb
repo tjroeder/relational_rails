@@ -9,4 +9,4 @@
   <li>Rotten Tomatoes Rank: <%= @film.rt_rank %></li>
   <li>Award Nominated Film: <%= @film.nominated %></li>
 <ul>
-<%= button_to 'Delete Film', "/films/#{@film.id}", method: :delete %>
+<%= button_to 'Delete Film', "/films/#{@film.id}", method: :delete, data: {confirm: "Really delete the Film?"} %>

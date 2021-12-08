@@ -11,4 +11,4 @@
   <li>TV Credit: <%= @director.tv_credit %></li>
 </ul>
 <%= button_to 'Update Director', "/directors/#{@director.id}/edit", method: :get %>
-<%= button_to 'Delete Director', "/directors/#{@director.id}", method: :delete %>
+<%= button_to 'Delete Director', "/directors/#{@director.id}", method: :delete, data: {confirm: "Really delete the Director?"} %>

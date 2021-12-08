@@ -50,7 +50,7 @@ RSpec.describe '/films/show.html.erb', type: :feature do
       it 'displays a button called Destroy Film' do
         visit "/films/#{film_1.id}"
         
-        expect(page).to have_button("Delete Film")
+        expect(page).to have_button("Delete Film", wait: "Really delete the Film?")
       end
     end
 
