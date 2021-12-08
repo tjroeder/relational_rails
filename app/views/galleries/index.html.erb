@@ -1,7 +1,7 @@
 <nav>
-  <a href="/pieces">Art Pieces</a>
-  <a href="/galleries">Galleries</a>
-</nav>
+  <%= link_to 'Art Pieces', "/pieces" %>
+  <%= link_to 'Galleries', "/galleries" %>
+</nav><br>
 
 <h1>Galleries Index</h1>
 
@@ -18,7 +18,7 @@
     <p id="<%= gallery.id %>"> <%= link_to "Edit", "/galleries/#{gallery.id}/edit" %> </p>
 
     <p id="delete<%= gallery.id %>"> <%= link_to "Delete", "/galleries/#{gallery.id}", method: :delete, data: {confirm: "Really delete the article?"} %></p>
-    
+
     <p>Created At: <%= gallery.created_at %></p>
   </section>
 

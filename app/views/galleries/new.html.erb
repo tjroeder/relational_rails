@@ -1,7 +1,7 @@
 <nav>
-  <a href="/pieces">Art Pieces</a>
-  <a href="/galleries">Galleries</a>
-</nav>
+  <%= link_to 'Art Pieces', "/pieces" %>
+  <%= link_to 'Galleries', "/galleries" %>
+</nav><br>
 
 <h1>Enter Gallery Information</h1>
 <%= form_with url: "/galleries", method: :post, local: true do |f| %>
