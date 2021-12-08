@@ -1,36 +1,35 @@
 class PiecesController < ApplicationController
+  before_action :set_piece, only: [:show, :edit, :update, :delete]
 
   def index
     @pieces = Piece.all
   end
 
   def show
-    @piece = Piece.find(params[:id])
   end
 
   def edit
-    @piece = Piece.find(params[:id])
   end
 
   def update
-    piece = Piece.find(params[:id])
+    @piece.update(piece_params)
 
-    piece.update({
-      name: params[:name],
-      artist: params[:artist],
-      year: params[:year],
-      original: params[:original]
-      })
-
-    piece.save
-
-    redirect_to "/pieces/#{piece.id}"
+    redirect_to "/pieces/#{@piece.id}"
   end
 
   def delete
-    Piece.destroy(params[:id])
+    @piece.destroy
 
     redirect_to "/pieces"
   end
 
+  private
+
+  def piece_params
+    params.permit(:name, :artist, :year, :original)
+  end
+
+  def set_piece
+    @piece = Piece.find(params[:id])
+  end
 end
