@@ -13,13 +13,13 @@ class PiecesController < ApplicationController
   end
 
   def update
-    piece = Piece.find(params[:piece][:id])
+    piece = Piece.find(params[:id])
 
     piece.update({
-      name: params[:piece][:name],
-      artist: params[:piece][:artist],
-      year: params[:piece][:year],
-      original: params[:piece][:original]
+      name: params[:name],
+      artist: params[:artist],
+      year: params[:year],
+      original: params[:original]
       })
 
     piece.save
