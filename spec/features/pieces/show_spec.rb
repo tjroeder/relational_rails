@@ -108,6 +108,7 @@ RSpec.describe PiecesController, type: :feature do
     end
     it 'has a link to route a delete request' do
       expect(page).to have_selector(:link_or_button, "Delete")
+      expect(page).to have_button("Delete", wait: "Really delete the gallery?")
     end
 
     it 'deletes the piece from the database and redirects to pieces index' do

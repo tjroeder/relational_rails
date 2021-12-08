@@ -106,6 +106,7 @@ RSpec.describe GalleriesController, type: :feature do
 
     it 'is a link on the galleries show page' do
       expect(page).to have_selector(:link_or_button, "Delete")
+      expect(page).to have_button("Delete", wait: "Really delete the gallery?")
     end
 
     it 'removes galleries and children when clicked' do
