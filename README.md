@@ -31,10 +31,10 @@
 On your local machine open a terminal session and enter the following commands for SSH or HTTPS to clone the repositiory.
 
 
-// using ssh key
+- using ssh key
 `$ git clone git@github.com:tjroeder/relational_rails.git`
 
-// using https
+- using https
 `$ git clone https://github.com/tjroeder/relational_rails.git`
 
 Once cloned, you'll have a new local copy in teh directory you ran the clone command in.
