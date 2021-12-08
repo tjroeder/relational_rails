@@ -14,6 +14,7 @@
 
 ## Database Schema
 - See image below for project database schema:
+
 ![image](https://user-images.githubusercontent.com/78194232/144355664-0c073ec2-161e-4dde-8569-1324766d7bc3.png)
 
 ## Requirements and Setup (for Unix based systems):
