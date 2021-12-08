@@ -37,7 +37,7 @@ On your local machine open a terminal session and enter the following commands f
 - using https
 `$ git clone https://github.com/tjroeder/relational_rails.git`
 
-Once cloned, you'll have a new local copy in teh directory you ran the clone command in.
+Once cloned, you'll have a new local copy in the directory you ran the clone command in.
 
 2. Change to the project directory:
 In terminal, use `$cd` to navigate to the Relational Rails project directory.
