@@ -15,16 +15,17 @@ RSpec.describe 'Add Piece to Gallery Form', type: :feature do
   end
 
   it 'has fields for inputting data' do
-    expect(page).to have_field('piece[name]')
-    expect(page).to have_field('piece[artist]')
-    expect(page).to have_field('piece[year]')
-    expect(page).to have_field('piece[original]')
+    expect(page).to have_field('name')
+    expect(page).to have_field('artist')
+    expect(page).to have_field('year')
+    expect(page).to have_field('original')
   end
 
   it 'updates gallery pieces index when form is submitted' do
-    fill_in 'piece[name]', with: 'Moaning Lisa'
-    fill_in 'piece[artist]', with: 'Leonard FlaDinci'
-    fill_in 'piece[year]', with: '1503'
+    fill_in 'name', with: 'Moaning Lisa'
+    fill_in 'artist', with: 'Leonard FlaDinci'
+    fill_in 'year', with: '1503'
+    choose('original', option: "true")
     click_on "Submit"
 
     expect(page).to have_current_path("/galleries/#{@gallery_1.id}/pieces")
@@ -40,10 +41,10 @@ RSpec.describe 'Add Piece to Gallery Form', type: :feature do
     gallery_2 = Gallery.create!(name: "Billy Bob Art", non_profit: true, entry_cost: 4.75)
     visit "/galleries/#{gallery_2.id}/pieces/new"
 
-    fill_in 'piece[name]', with: 'Moaning Lisa'
-    fill_in 'piece[artist]', with: 'Leonard FlaDinci'
-    fill_in 'piece[year]', with: '1503'
-    choose('piece[original]', option: "false")
+    fill_in 'name', with: 'Moaning Lisa'
+    fill_in 'artist', with: 'Leonard FlaDinci'
+    fill_in 'year', with: '1503'
+    choose('original', option: "false")
     click_on "Submit"
 
     expect(page).to have_current_path("/galleries/#{gallery_2.id}/pieces")

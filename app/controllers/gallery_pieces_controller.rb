@@ -17,13 +17,13 @@ class GalleryPiecesController < ApplicationController
   end
 
   def create
-    gallery = Gallery.find(params[:piece][:gallery_id])
+    gallery = Gallery.find(params[:gallery_id])
 
     piece = gallery.pieces.new({
-      name: params[:piece][:name],
-      artist: params[:piece][:artist],
-      year: params[:piece][:year],
-      original: params[:piece][:original]
+      name: params[:name],
+      artist: params[:artist],
+      year: params[:year],
+      original: params[:original]
       })
 
     gallery.save

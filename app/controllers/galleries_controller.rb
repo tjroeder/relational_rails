@@ -13,9 +13,9 @@ class GalleriesController < ApplicationController
 
   def create
     gallery = Gallery.new({
-      name: params[:gallery][:name],
-      entry_cost: params[:gallery][:entry_cost],
-      non_profit: params[:gallery][:non_profit]
+      name: params[:name],
+      entry_cost: params[:entry_cost],
+      non_profit: params[:non_profit]
       })
 
     gallery.save
@@ -29,11 +29,10 @@ class GalleriesController < ApplicationController
 
   def update
     gallery = Gallery.find(params[:id])
-
     gallery.update({
-      name: params[:gallery][:name],
-      entry_cost: params[:gallery][:entry_cost],
-      non_profit: params[:gallery][:non_profit]
+      name: params[:name],
+      entry_cost: params[:entry_cost],
+      non_profit: params[:non_profit]
       })
 
     gallery.save

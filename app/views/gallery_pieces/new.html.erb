@@ -5,25 +5,26 @@
 
 
 <h3>Add New Piece to <%= @gallery.name %>:</h3>
-<form action="/galleries/:gallery_id/pieces" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<%= form_with url: "/galleries/#{@gallery.id}/pieces", method: :post, local: true do |f| %>
+  <%= f.label :name, "Name of Piece:" %>
+  <%= f.text_field :name, placeholder: "Mona Lisa", required: true %>
+  <br><br>
 
-  <input type="hidden" name="piece[gallery_id]" value="<%= @gallery.id %>">
+  <%= f.label :artist, "Artist:" %>
+  <%= f.text_field :artist, placeholder: "Leonardo DaVinci", required: true %>
+  <br><br>
 
-  <label for="piecename">Name of Piece:</label>
-  <input type='text' name='piece[name]' placeholder="Mona Lisa" required><br><br>
-
-  <label for="artistname">Artist:</label>
-  <input type='text' name='piece[artist]' placeholder="Lonardo DaVinci" required><br><br>
-
-  <label for="yearmade">Entry Cost (in USD):</label>
-  <!-- <input type='text' name='piece[year]' placeholder='1503' required><br><br> -->
-  <input type='number' name='piece[year]' placeholder='1503' required><br><br>
+  <%= f.label :year, "Year Created:" %>
+  <%= f.number_field :year, max: "2021", step: 1, placeholder: "1553", required: true %>
+  <br><br>
 
   <p>Is it an Original Piece:</p>
-  <input type='radio' name='piece[original]' value="true" checked required>
-  <label for='originalyes'>Yes</label><br><br>
-  <input type='radio' name='piece[original]' value="false" required>
-  <label for='originalno'>No</label><br><br>
-  <input type='submit' value='Submit'>
-</form>
+  <%= f.radio_button :original, true, id: 'orgtrue' %>
+  <%= f.label :original, "Original", checked: true, required: true %>
+
+  <%= f.radio_button :original, false, id: 'orgfalse' %>
+  <%= f.label :original, "Other", required: true %>
+  <br><br>
+
+  <%= f.submit "Submit" %>
+<% end %>
