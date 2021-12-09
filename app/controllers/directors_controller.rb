@@ -2,7 +2,11 @@ class DirectorsController < ApplicationController
   before_action :set_director, only: [:show, :edit, :update, :destroy]
 
   def index
-    @directors = Director.all
+    if params[:commit]
+      @directors = Director.sort_film_count
+    else
+      @directors = Director.desc_order_by_created
+    end
   end
 
   def show

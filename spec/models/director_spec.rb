@@ -31,6 +31,13 @@ RSpec.describe Director, type: :model do
         expect(Director.desc_order_by_created).to eq(expected)
       end
     end
+
+    describe '::sort_film_count' do
+      it 'sort by the film count' do
+
+        expect(Director.sort_film_count).to eq([director_1, director_3, director_2])
+      end
+    end
   end
 
   describe 'instance methods' do

@@ -19,4 +19,8 @@ class Director < ApplicationRecord
   def filter_film_rt_rank(number)
     films.where("rt_rank > ?", number)
   end
+
+  def self.sort_film_count
+    Director.left_joins(:films).group(:id).order('COUNT(films.id)DESC')
+  end
 end
