@@ -6,13 +6,17 @@
 <h1>Directors Index</h1>
 
 <h2><%= link_to 'Add New Director', '/directors/new' %></h2>
+<%= form_with url: '/directors', method: :get, disabled: false, local: true do |f| %>
+  <%= f.label :sort, "Sort by Director's Film Count" %>
+  <%= f.submit 'Sort' %>
+<% end %>
 
 <section>
   <h2>Directors:</h2>
   
-  <% @directors.desc_order_by_created.each do |director| %>
+  <% @directors.each do |director| %>
     <section style="padding: 10px; border: 2px solid red;">
-      <p><b><%= link_to director.name, "/directors/#{director.id}" %><b></p>
+      <p id="<%= director.id %>"><b><%= link_to director.name, "/directors/#{director.id}" %><b> Film Count: <%= director.total_films %></p>
       <p id="edit-<%= director.id %>"><%= link_to 'Edit Director', "/directors/#{director.id}/edit" %></p>
       <p>Created at: <%= director.created_at %></p>
     </section>
