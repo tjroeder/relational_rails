@@ -2,7 +2,11 @@ class GalleriesController < ApplicationController
   before_action :set_gallery, only: [:show, :edit, :update, :delete]
 
   def index
-    @galleries = Gallery.all
+    if params[:sort]
+      @galleries = Gallery.order_by_piece_count
+    else
+      @galleries = Gallery.created_at_order_desc
+    end
   end
 
   def show

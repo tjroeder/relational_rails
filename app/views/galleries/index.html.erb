@@ -6,11 +6,16 @@
 <h1>Galleries Index</h1>
 
 <h2><%= link_to "Add New Gallery", '/galleries/new' %></h2>
+<%= form_with url: "/galleries", method: :get, local: true do |f| %>
+  <%= f.hidden_field :sort %>
+  <%= hidden_field_tag 'sort', true %>
+  <%= f.submit 'Order by Pieces: Most to Least'%>
+<% end %>
 
 <section>
   <h2>Galleries:</h2>
 
-<% @galleries.created_at_order_desc.each do |gallery| %>
+<% @galleries.each do |gallery| %>
   <section style="padding: 10px; border: 2px solid red;">
 
     <p> <b><a href="/galleries/<%= gallery.id %>"> <%= gallery.name %></a></b> </p>
@@ -20,6 +25,7 @@
     <p id="delete<%= gallery.id %>"> <%= link_to "Delete", "/galleries/#{gallery.id}", method: :delete, data: {confirm: "Really delete the gallery?"} %></p>
 
     <p>Created At: <%= gallery.created_at %></p>
+    <p>Number of Pieces: <%= gallery.pieces.count %></p>
   </section>
 
   <% end %>
