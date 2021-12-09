@@ -22,6 +22,17 @@ RSpec.describe GalleriesController, type: :feature do
     it 'orders the galleries index by date created from most recent to first created' do
       expect("Benji's Gallery").to appear_before("Art 4 Us", only_text: true)
     end
+
+    it 'displays created at and number of children' do
+      piece_1 = Piece.create!(name: "Starry Night", artist: "Vincent Van Gogh", year: 1889, original: true, gallery_id: @gallery_1.id)
+      piece_2 = Piece.create!(name: "Self Portrait", artist: "Vincent Van Gogh", year: 1889, original: true, gallery_id: @gallery_1.id)
+      piece_3 = Piece.create!(name: "Girl with the Pearl Earring", artist: "Johannes Vermeer", year: 1665, original: true, gallery_id: @gallery_1.id)
+
+      visit '/galleries'
+
+      expect(page).to have_content('Number of Pieces: 3')
+      expect(page).to have_content('Number of Pieces: 0')
+    end
   end
 
   describe 'nav element at page top' do
@@ -80,6 +91,42 @@ RSpec.describe GalleriesController, type: :feature do
 
       expect(page).to have_no_content(@gallery_1.name)
       expect(page).to have_no_content(@gallery_2.name)
+    end
+  end
+
+  describe 'sort by largest number of children' do
+    it 'has a button to do this' do
+      visit '/galleries'
+      expect(page).to have_button('Order by Pieces: Most to Least')
+    end
+
+    it 'orders galleries by most to least children when clicked' do
+      piece_1 = Piece.create!(name: "Starry Night", artist: "Vincent Van Gogh", year: 1889, original: true, gallery_id: @gallery_1.id)
+      piece_2 = Piece.create!(name: "Self Portrait", artist: "Vincent Van Gogh", year: 1889, original: true, gallery_id: @gallery_1.id)
+      piece_3 = Piece.create!(name: "Girl with the Pearl Earring", artist: "Johannes Vermeer", year: 1665, original: true, gallery_id: @gallery_2.id)
+
+      visit '/galleries'
+
+      expect(@gallery_2.name).to appear_before(@gallery_1.name, only_text: true )
+
+      click_button 'Order by Pieces: Most to Least'
+
+      expect(@gallery_1.name).to appear_before(@gallery_2.name, only_text: true )
+    end
+
+    it 'displays in order after click button' do
+      piece_1 = Piece.create!(name: "Starry Night", artist: "Vincent Van Gogh", year: 1889, original: true, gallery_id: @gallery_1.id)
+      piece_2 = Piece.create!(name: "Self Portrait", artist: "Vincent Van Gogh", year: 1889, original: true, gallery_id: @gallery_1.id)
+      piece_3 = Piece.create!(name: "Girl with the Pearl Earring", artist: "Johannes Vermeer", year: 1665, original: true, gallery_id: @gallery_1.id)
+
+      visit '/galleries'
+
+      expect(page).to have_content('Number of Pieces: 3')
+      expect(page).to have_content('Number of Pieces: 0')
+
+      click_button 'Order by Pieces: Most to Least'
+
+      expect('Number of Pieces: 3').to appear_before('Number of Pieces: 0', only_text: true)
     end
   end
 end
